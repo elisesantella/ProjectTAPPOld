@@ -5,6 +5,7 @@ import { Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+//CUSTOMER APP
 const Stack = createNativeStackNavigator();
 
 export default function App() {
