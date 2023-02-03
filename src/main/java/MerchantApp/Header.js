@@ -6,27 +6,27 @@ function Header() {
     return(
         <View style ={styles.headerContainer}>
             <View style ={styles.ATUContainer}>
-            <View style ={styles.ATUSpace}/>
-                <View style ={styles.ATU2}>
+                <View style ={styles.ATUSpace}/>
+                <View style ={styles.ATUImageContainer}>
                     <Image 
                         style={styles.ATUimage}
                         source={require('./ATU_Logo.png')} />
                 </View>
             </View>
-            <View style ={styles.spaceHeader2}/>
-            <View style ={styles.TAPPContainer2}>
+            <View style ={styles.spaceHeader}/>
+            <View style ={styles.TAPPContainer}>
                 <View style ={styles.logoContainer}>
-                <View style ={styles.logoSpace}/>
-                <View style ={styles.logo2}>
-                    <Image 
-                        style={styles.logoImage}
-                        source={require('./TappLogo2.png')} />
+                    <View style ={styles.logoSpace}/>
+                        <View style ={styles.logoImageContainer}>
+                            <Image 
+                                style={styles.logoImage}
+                                source={require('./TappLogo2.png')} />
+                        </View>
                 </View>
-                </View>
-                <View style ={styles.TAPPtext}>
-                <Text style={styles.text}>
-                    <Text>TAPP</Text>
-                </Text>
+                <View style ={styles.TAPPTextContainer}>
+                    <Text style={styles.TAPPtext}>
+                        <Text>TAPP</Text>
+                    </Text>
                 </View>
             </View>
         </View>
@@ -57,24 +57,19 @@ const styles = StyleSheet.create({
         //borderWidth: 5,
         //borderColor: "blue",
     },
-    ATU2: {
+    ATUImageContainer: {
         height: "190%",
         width: '100%',
         justifyContent: "flex-end",
         //borderWidth: 5,
         //borderColor: "blue",
     },
-    //  logoImage: {
-    //     alignSelf: "center",
-    //     height: "90%",
-    //     width: "100%",
-    // },
     ATUimage: {
         alignSelf: "center",
         height: "100%",
         width: "100%",
     },
-    spaceHeader2: {
+    spaceHeader: {
         flexDirection: "row",
         height: "100%",
         width: '5%',
@@ -82,7 +77,7 @@ const styles = StyleSheet.create({
        // borderWidth: 5,
         //borderColor: "black",
     },
-    TAPPContainer2: {
+    TAPPContainer: {
         flexDirection: "row",
         height: "100%",
         width: '55%',
@@ -106,7 +101,7 @@ const styles = StyleSheet.create({
         //borderWidth: 5,
         //borderColor: "blue",
     },
-    logo2: {
+    logoImageContainer: {
         height: "70%",
         width: '100%',
         justifyContent: "flex-end",
@@ -118,16 +113,19 @@ const styles = StyleSheet.create({
         height: "80%",
         width: "89%",
     },
-    TAPPtext: {
+    TAPPTextContainer: {
         flexDirection: "column-reverse",
         //borderWidth: 5,
         //borderColor: "red",
     },
-    text: {
+    TAPPtext: {
         textAlign: "center",
         fontSize: 60,
         fontWeight: "bold",
-        color: "teal",
+        color: "midnightblue",
+        textShadowColor: "teal",
+        textShadowOffset: {width: -3, height: 3},
+        textShadowRadius: 5,
     },
   });
   
