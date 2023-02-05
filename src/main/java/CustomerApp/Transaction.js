@@ -37,12 +37,15 @@ function Transaction({ navigation }){
       flexDirection: "column",
     },
     bodyContainer: {
-    flexDirection: "column",
-    backgroundColor: "powderblue",
-    height: "70%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
+      flexDirection: "column",
+      backgroundColor: "powderblue",
+      height: "70%",
+      width: '100%',
+      justifyContent: "center",
+      alignItems: "center",
+      borderWidth: 5,
+      borderColor: "teal",
+      borderTopWidth: 0,
     },
     contentContainer: {
       justifyContent: "center",
@@ -68,12 +71,16 @@ function Transaction({ navigation }){
       width: '100%',
       borderWidth: 5,
       borderColor: "teal",
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
     },
     dateText: {
       textAlign: "center",
       fontSize: 25,
       fontWeight: "bold",
-      color: "black",
+      color: "midnightblue",
     },
     spaceLoginSignUp: {
       height: "15%",
@@ -83,6 +90,6 @@ function Transaction({ navigation }){
       padding: 15,
     },
   });
-
+  
 
   export default Transaction;

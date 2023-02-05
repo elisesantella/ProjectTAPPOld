@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
         backgroundColor: "teal",
         height: "8%",
         width: '100%',
-        //borderWidth: 5,
+        //borderWidth: 3,
         //borderColor: "yellow",
       },
       footerContent:{
-        flexDirection: "row",
+        flexDirection: "column-reverse",
         height: "100%",
         width: '50%',
         justifyContent: "flex-start",
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
         //borderColor: "blue",
       },
   });
-
+  
 
   export default Footer;
