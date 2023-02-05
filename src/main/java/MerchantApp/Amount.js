@@ -27,12 +27,13 @@ function Amount ({ navigation }) {
                   style={styles.input}
                   onChangeText={onChangeNumber}
                   value={number}
-                  placeholder="useless placeholder"
-                  keyboardType="numeric"
+                  placeholder="Enter Amount"
+                  placeholderTextColor="lightsteelblue"
+                  keyboardType="default"
               />
           </SafeAreaView>
-        </View>
-        {/* <View style ={styles.spaceLoginSignUp}/> */}
+        </View> 
+        <View style ={styles.spaceLoginSignUp}/>
           <View style ={styles.buttonOk}>
           <TouchableOpacity
           onPress={ () => navigation.navigate('Transaction')}>
@@ -46,7 +47,7 @@ function Amount ({ navigation }) {
   )
 }
 
-
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -60,6 +61,9 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 5,
+    borderColor: "teal",
+    borderTopWidth: 0,
   },
   contents2: {
     //borderWidth: 5,
@@ -77,6 +81,10 @@ const styles = StyleSheet.create({
     width: '40%',
     justifyContent: "center",
     alignItems: "center",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
   textConfirm: {
     textAlign: "center",
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 25,
     fontWeight: "bold",
-    color: "black",
+    color: "midnightblue",
     //borderWidth: 5,
     //borderColor: "yellow",
   },
@@ -102,6 +110,10 @@ const styles = StyleSheet.create({
     width: '100%',
     borderWidth: 5,
     borderColor: "teal",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
   spaceLoginSignUp: {
     height: "15%",
@@ -114,13 +126,18 @@ const styles = StyleSheet.create({
     height: 50,
     margin: 12,
     borderWidth: 5,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     padding: 10,
     borderColor: "teal",
     backgroundColor: "white",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
+    color: "midnightblue",
   },
 });
-
+  
   export default Amount;

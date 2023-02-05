@@ -26,7 +26,7 @@ function Approved({ navigation }) {
               </View>
               <View style ={styles.spaceLoginSignUp}>
               <View style ={styles.companyEntry}/>
-              </View>
+              </View> 
               <View style ={styles.spaceLoginSignUp}/>
                 <View style ={styles.buttonReturn}>
                 <TouchableOpacity
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
+        borderWidth: 5,
+        borderColor: "teal",
+        borderTopWidth: 0,
     },
     contents2: {
         //borderWidth: 5,
@@ -71,6 +74,10 @@ const styles = StyleSheet.create({
         width: '60%',
         justifyContent: "center",
         alignItems: "center",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
     textConfirm: {
         textAlign: "center",
@@ -84,7 +91,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
-        color: "black",
+        color: "midnightblue",
         //borderWidth: 5,
         //borderColor: "yellow",
     },
@@ -96,6 +103,10 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 5,
         borderColor: "teal",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
     spaceLoginSignUp: {
         height: "15%",
@@ -108,9 +119,13 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         height: "15%",
         width: '100%',
-        //borderWidth: 5,
-        //borderColor: "red",
+        borderWidth: 3,
+        borderColor: "teal",
         padding: 15,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
     spaceHome: {
         height: "5%",
@@ -120,6 +135,6 @@ const styles = StyleSheet.create({
         padding: 5,
     },
 });
-
+  
 
   export default Approved;

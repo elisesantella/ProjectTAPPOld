@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
 function SignUp({ navigation }) {
+
+  const [company, onChangeCompany] = React.useState(null);
+  const [pin, onChangePin] = React.useState(null);
+
     return(
     <View style={styles.container}>
       <Header></Header>
@@ -17,17 +21,32 @@ function SignUp({ navigation }) {
               <Text>Enter Company Name</Text>
             </Text>
           </View>
-          <View style ={styles.spaceLoginSignUp}>
-          <View style ={styles.companyEntry}/>
-          </View>
+            <SafeAreaView>
+              <TextInput
+                  style={styles.input}
+                  onChangeText={onChangeCompany}
+                  value={company}
+                  placeholder="Enter Company"
+                  placeholderTextColor="lightsteelblue"
+                  keyboardType="default"
+              />
+            </SafeAreaView>
           <View style ={styles.loginSignUpButton}>
           <Text style={styles.text2}>
               <Text>Enter a PIN</Text>
             </Text>
           </View>
-          <View style ={styles.spaceLoginSignUp}>
-          <View style ={styles.pinEntry}/>
-          </View>
+          <SafeAreaView>
+              <TextInput
+                  style={styles.input}
+                  onChangeText={onChangePin}
+                  value={pin}
+                  placeholder="Enter PIN"
+                  placeholderTextColor="lightsteelblue"
+                  keyboardType="default"
+                  secureTextEntry="true"
+              />
+            </SafeAreaView>
             <View style ={styles.buttonConfirm}>
             <TouchableOpacity
             onPress={() => navigation.navigate('Start')}>
@@ -54,6 +73,9 @@ const styles = StyleSheet.create({
       width: '100%',
       justifyContent: "center",
       alignItems: "center",
+      borderWidth: 5,
+      borderColor: "teal",
+      borderTopWidth: 0,
     },
     contents2: {
       //borderWidth: 5,
@@ -71,6 +93,10 @@ const styles = StyleSheet.create({
       width: '50%',
       justifyContent: "center",
       alignItems: "center",
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
     },
     textConfirm: {
       textAlign: "center",
@@ -84,7 +110,7 @@ const styles = StyleSheet.create({
       textAlign: "center",
       fontSize: 25,
       fontWeight: "bold",
-      color: "black",
+      color: "midnightblue",
       //borderWidth: 5,
       //borderColor: "yellow",
     },
@@ -96,6 +122,10 @@ const styles = StyleSheet.create({
       width: '100%',
       borderWidth: 5,
       borderColor: "teal",
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
     },
     spaceLoginSignUp: {
       height: "15%",
@@ -108,17 +138,42 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       height: "15%",
       width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
+      borderWidth: 3,
+      borderColor: "teal",
       padding: 15,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
     },
     pinEntry: {
       backgroundColor: "white",
       height: "15%",
       width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
+      borderWidth: 3,
+      borderColor: "teal",
       padding: 15,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
+    },
+    input: {
+      height: 50,
+      width: 200,
+      margin: 12,
+      borderWidth: 5,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
+      padding: 10,
+      borderColor: "teal",
+      backgroundColor: "white",
+      textAlign: "center",
+      fontSize: 20,
+      fontWeight: "bold",
+      color: "midnightblue",
     },
   });
 
