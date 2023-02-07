@@ -7,47 +7,45 @@ import Header from './Header';
 import Footer from './Footer';
 
 function Amount ({ navigation }) {
-
+  
   const [number, onChangeNumber] = React.useState(null);
-
+  
   return (
-  //const [text, onChangeText] = React.useState("Useless Text");
-  <View style={styles.container}>
-    <Header></Header>
-    <View style ={styles.mainBody}>
-      <View style ={styles.contents2}>
-        <View style ={styles.loginSignUpButton}>
-          <Text style={styles.text2}>
-            <Text>Enter Transaction Amount:</Text>
-          </Text>
-        </View>
-        <View style ={styles.spaceLoginSignUp}>
+    <View style={styles.container}>
+      <Header></Header>
+      <View style ={styles.mainBody}>
+        <View style ={styles.content}>
+          <View style ={styles.amountBox}>
+            <Text style={styles.text}>
+              <Text>Enter Transaction Amount:</Text>
+            </Text>
+          </View>
+        <View style ={styles.space}>
           <SafeAreaView>
-              <TextInput
-                  style={styles.input}
-                  onChangeText={onChangeNumber}
-                  value={number}
-                  placeholder="Enter Amount"
-                  placeholderTextColor="lightsteelblue"
-                  keyboardType="default"
-              />
+            <TextInput
+                style={styles.input}
+                onChangeText={onChangeNumber}
+                value={number}
+                placeholder="Enter Amount"
+                placeholderTextColor="lightsteelblue"
+                keyboardType="default"
+            />
           </SafeAreaView>
         </View> 
-        <View style ={styles.spaceLoginSignUp}/>
+        <View style ={styles.space}/>
           <View style ={styles.buttonOk}>
-          <TouchableOpacity
-          onPress={ () => navigation.navigate('Transaction')}>
-          <Text style={styles.textConfirm}>OK</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={ () => navigation.navigate('Transaction')}>
+              <Text style={styles.textOk}>OK</Text>
+            </TouchableOpacity>
           </View>
+        </View>
       </View>
+      <Footer></Footer>
     </View>
-    <Footer></Footer>
-  </View>
   )
 }
-
-  
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
   mainBody: {
     flexDirection: "column",
     backgroundColor: "powderblue",
-    height: "70%",
+    height: "75%",
     width: '100%',
     justifyContent: "center",
     alignItems: "center",
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
     borderColor: "teal",
     borderTopWidth: 0,
   },
-  contents2: {
+  content: {
     //borderWidth: 5,
     //borderColor: "yellow",
     height: "80%",
@@ -73,36 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  buttonOk: {
-    backgroundColor: "teal",
-    borderWidth: 5,
-    borderColor: "darkslategrey",
-    height: "15%",
-    width: '40%',
-    justifyContent: "center",
-    alignItems: "center",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  textConfirm: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "white",
-    //borderWidth: 5,
-    //borderColor: "yellow",
-  },
-  text2: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "midnightblue",
-    //borderWidth: 5,
-    //borderColor: "yellow",
-  },
-  loginSignUpButton: {
+  amountBox: {
     backgroundColor: "cadetblue",
     justifyContent: "center",
     alignItems: "center",
@@ -115,7 +84,15 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
   },
-  spaceLoginSignUp: {
+  text: {
+    textAlign: "center",
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "midnightblue",
+    //borderWidth: 5,
+    //borderColor: "yellow",
+  },
+  space: {
     height: "15%",
     width: '100%',
     //borderWidth: 5,
@@ -138,6 +115,28 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "midnightblue",
   },
+  buttonOk: {
+    backgroundColor: "teal",
+    borderWidth: 5,
+    borderColor: "darkslategrey",
+    height: "15%",
+    width: '40%',
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    shadowColor: 
+  },
+  textOk: {
+    textAlign: "center",
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "white",
+    //borderWidth: 5,
+    //borderColor: "yellow",
+  },
 });
   
-  export default Amount;
+export default Amount;

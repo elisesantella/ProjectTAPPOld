@@ -11,7 +11,7 @@ function Start({ navigation }) {
         <View style={styles.container}>
             <Header></Header>
             <View style ={styles.mainBody}>
-                <View style ={styles.contentOne}>
+                <View style ={styles.content}>
                     <View style ={styles.loginSignUpButton}>
                         <TouchableOpacity
                             onPress={() => navigation.navigate('Home')}>
@@ -25,20 +25,18 @@ function Start({ navigation }) {
                             <Text style={styles.text}>Sign Up</Text>
                         </TouchableOpacity>
                     </View>
-                <View style ={styles.spaceLoginSignUp}/>
+                    <View style ={styles.spaceLoginSignUp}/>
                     <View style ={styles.imageContainer}>
-                        <View style ={styles.Logoimage}>
-                            <Image
-                                style={styles.Logoimage}
-                                source={require('./TappLogo.png')} />
-                        </View>
+                        <Image
+                            style={styles.logoImage}
+                            source={require('./TappLogo.png')} />
                     </View>
                 </View>
             </View>
             <Footer></Footer>
         </View>
-      );
-    }
+    );
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
     mainBody: {
         flexDirection: "column",
         backgroundColor: "powderblue",
-        height: "70%",
+        height: "75%",
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
         borderColor: "teal",
         borderTopWidth: 0,
     },
-    contentOne: {
+    content: {
         //borderWidth: 5,
         //borderColor: "teal",
         height: "80%",
@@ -104,7 +102,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
     },
-    Logoimage: {
+    logoimage: {
         height: "100%",
         width: "100%",
         //borderWidth: 5,
@@ -113,4 +111,4 @@ const styles = StyleSheet.create({
     },
 });
 
-  export default Start;
+export default Start;
