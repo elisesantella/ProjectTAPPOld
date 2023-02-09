@@ -38,8 +38,9 @@ function Amount ({ navigation }) {
           </View> 
           <View style ={styles.space}/>
             <View style ={styles.buttonOk}>
+              {/* <Text style={styles.textOk}>OK</Text> */}
               <TouchableOpacity
-                onPress={ () => navigation.navigate('Transaction')}>
+                onPress={ () => navigation.navigate('Transaction', {paraKey: number})}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
             </View>
