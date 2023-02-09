@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -11,34 +11,37 @@ function Start({ navigation }) {
         <View style={styles.container}>
             <Header></Header>
             <View style ={styles.mainBody}>
-                <View style ={styles.contentOne}>
-                    <View style ={styles.loginSignUpButton}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Home')}>
-                            <Text style={styles.text}>Login</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style ={styles.spaceLoginSignUp}/>
-                    <View style ={styles.loginSignUpButton}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Sign Up')}>
-                            <Text style={styles.text}>Sign Up</Text>
-                        </TouchableOpacity>
-                    </View>
-                <View style ={styles.spaceLoginSignUp}/>
-                    <View style ={styles.imageContainer}>
-                        <View style ={styles.Logoimage}>
+                <ImageBackground 
+                        source={require('./background.png')} 
+                        resizeMode= "stretch" 
+                        style={styles.background}>
+                    <View style ={styles.content}>
+                        <View style ={styles.loginSignUpButton}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Home')}>
+                                <Text style={styles.text}>Login</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style ={styles.spaceLoginSignUp}/>
+                        <View style ={styles.loginSignUpButton}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('SignUp')}>
+                                <Text style={styles.text}>Sign Up</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style ={styles.spaceLoginSignUp}/>
+                        <View style ={styles.imageContainer}>
                             <Image
-                                style={styles.Logoimage}
+                                style={styles.logoImage}
                                 source={require('./TappLogo.png')} />
                         </View>
                     </View>
-                </View>
-            </View>
+                </ImageBackground>
+             </View>
             <Footer></Footer>
         </View>
-      );
-    }
+    );
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -49,7 +52,7 @@ const styles = StyleSheet.create({
     mainBody: {
         flexDirection: "column",
         backgroundColor: "powderblue",
-        height: "70%",
+        height: "75%",
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
@@ -57,7 +60,14 @@ const styles = StyleSheet.create({
         borderColor: "teal",
         borderTopWidth: 0,
     },
-    contentOne: {
+    background: {
+        flexDirection: "column",
+        height: "100%",
+        width: '100%',
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    content: {
         //borderWidth: 5,
         //borderColor: "teal",
         height: "80%",
@@ -104,7 +114,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
     },
-    Logoimage: {
+    logoimage: {
         height: "100%",
         width: "100%",
         //borderWidth: 5,
@@ -113,4 +123,4 @@ const styles = StyleSheet.create({
     },
 });
 
-  export default Start;
+export default Start;

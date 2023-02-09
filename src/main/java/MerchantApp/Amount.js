@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -14,32 +14,37 @@ function Amount ({ navigation }) {
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
-        <View style ={styles.content}>
-          <View style ={styles.amountBox}>
-            <Text style={styles.text}>
-              <Text>Enter Transaction Amount:</Text>
-            </Text>
+        <ImageBackground 
+            source={require('./backgroundAmount.png')} 
+            resizeMode= "stretch" 
+            style={styles.background}>
+          <View style ={styles.content}>
+            <View style ={styles.amountBox}>
+              <Text style={styles.text}>
+                <Text>Enter Transaction Amount:</Text>
+              </Text>
+            </View>
+          <View style ={styles.space}>
+            <SafeAreaView>
+              <TextInput
+                  style={styles.input}
+                  onChangeText={onChangeNumber}
+                  value={number}
+                  placeholder="Enter Amount"
+                  placeholderTextColor="lightsteelblue"
+                  keyboardType="default"
+              />
+            </SafeAreaView>
+          </View> 
+          <View style ={styles.space}/>
+            <View style ={styles.buttonOk}>
+              <TouchableOpacity
+                onPress={ () => navigation.navigate('Transaction')}>
+                <Text style={styles.textOk}>OK</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        <View style ={styles.space}>
-          <SafeAreaView>
-            <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder="Enter Amount"
-                placeholderTextColor="lightsteelblue"
-                keyboardType="default"
-            />
-          </SafeAreaView>
-        </View> 
-        <View style ={styles.space}/>
-          <View style ={styles.buttonOk}>
-            <TouchableOpacity
-              onPress={ () => navigation.navigate('Transaction')}>
-              <Text style={styles.textOk}>OK</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </ImageBackground>
       </View>
       <Footer></Footer>
     </View>
@@ -62,6 +67,13 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "teal",
     borderTopWidth: 0,
+  },
+  background: {
+    flexDirection: "column",
+    height: "100%",
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   content: {
     //borderWidth: 5,
@@ -127,7 +139,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-    shadowColor: 
+    shadowColor: "midnightblue",
+    shadowOpacity: 0.5,
+    shadowRadius: 15 ,
+    shadowOffset : { width: 7, height: 7},
   },
   textOk: {
     textAlign: "center",

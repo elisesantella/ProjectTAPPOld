@@ -18,7 +18,7 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator initalRouteName="Start">
       <Stack.Screen name="Start" component={Start} />
-      <Stack.Screen name="Sign Up" component={SignUp} />
+      <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Transaction" component={Transaction} />
       <Stack.Screen name="Add Coin" component={Add} />
@@ -33,7 +33,7 @@ export default function App() {
 //     <View style={styles.container}>
 //        <View style={styles.headerContainer}>
 //         <View style={styles.atuLogoContainer}>
-//           <Image 
+//           <Image
 //             style={styles.atuImage}
 //             source={require('./ATU_Logo.png')} />
 //         </View>
@@ -61,7 +61,7 @@ export default function App() {
 //           </View>
 //           <View style={styles.spaceLoginSignUp}></View>
 //           <View style={styles.tappLogoContainer}>
-//             <Image 
+//             <Image
 //               style={styles.tappLogoimage}
 //               source={require('./TappLogo.png')} />
 //           </View>
@@ -83,14 +83,14 @@ export default function App() {
 //     <View style={styles.container}>
 //       <View style={styles.headerContainer}>
 //         <View style={styles.atuLogoContainer}>
-//           <Image 
+//           <Image
 //             style={styles.atuImage}
 //             source={require('./ATU_Logo.png')} />
 //         </View>
 //         <View style={styles.spaceHeader}></View>
 //         <View style={styles.tappContainer2}>
 //           <View style={styles.tappHeaderlogoContainer}>
-//             <Image 
+//             <Image
 //             style={styles.tappLogoimage}
 //             source={require('./TappLogo.png')} />
 //           </View>
@@ -137,14 +137,14 @@ export default function App() {
 //     <View style={styles.container}>
 //       <View style={styles.headerContainer}>
 //         <View style={styles.atuLogoContainer}>
-//           <Image 
+//           <Image
 //             style={styles.atuImage}
 //             source={require('./ATU_Logo.png')} />
 //         </View>
 //         <View style={styles.spaceHeader}></View>
 //         <View style={styles.tappContainer2}>
 //           <View style={styles.tappHeaderlogoContainer}>
-//             <Image 
+//             <Image
 //             style={styles.tappLogoimage}
 //             source={require('./TappLogo.png')} />
 //           </View>
@@ -178,14 +178,14 @@ export default function App() {
 //             onPress={() => navigation.navigate('Transaction')}>
 //             <Text style={styles.homeText}>Payment</Text>
 //             </TouchableOpacity>
-//             </View> 
+//             </View>
 //             <View style={styles.paymentSpace}></View>
 //             <View style={styles.paymentButton}>
 //             <TouchableOpacity
 //             onPress={() => navigation.navigate('Add Coin')}>
 //             <Text style={styles.homeText}>Add Coin</Text>
 //             </TouchableOpacity>
-//             </View> 
+//             </View>
 //           </View>
 //         </View>
 //       </View>
@@ -205,14 +205,14 @@ export default function App() {
 //     <View style={styles.container}>
 //     <View style={styles.headerContainer}>
 //         <View style={styles.atuLogoContainer}>
-//           <Image 
+//           <Image
 //             style={styles.atuImage}
 //             source={require('./ATU_Logo.png')} />
 //         </View>
 //         <View style={styles.spaceHeader}></View>
 //         <View style={styles.tappContainer2}>
 //           <View style={styles.tappHeaderlogoContainer}>
-//             <Image 
+//             <Image
 //             style={styles.tappLogoimage}
 //             source={require('./TappLogo.png')} />
 //           </View>
@@ -251,14 +251,14 @@ export default function App() {
 //     <View style={styles.container}>
 //       <View style={styles.headerContainer}>
 //         <View style={styles.atuLogoContainer}>
-//           <Image 
+//           <Image
 //             style={styles.atuImage}
 //             source={require('./ATU_Logo.png')} />
 //         </View>
 //         <View style={styles.spaceHeader}></View>
 //         <View style={styles.tappContainer2}>
 //           <View style={styles.tappHeaderlogoContainer}>
-//             <Image 
+//             <Image
 //             style={styles.tappLogoimage}
 //             source={require('./TappLogo.png')} />
 //           </View>
@@ -300,14 +300,14 @@ export default function App() {
 //     <View style={styles.container}>
 //       <View style={styles.headerContainer}>
 //         <View style={styles.atuLogoContainer}>
-//           <Image 
+//           <Image
 //             style={styles.atuImage}
 //             source={require('./ATU_Logo.png')} />
 //         </View>
 //         <View style={styles.spaceHeader}></View>
 //         <View style={styles.tappContainer2}>
 //           <View style={styles.tappHeaderlogoContainer}>
-//             <Image 
+//             <Image
 //             style={styles.tappLogoimage}
 //             source={require('./TappLogo.png')} />
 //           </View>
@@ -382,14 +382,14 @@ export default function App() {
 //     height: "100%",
 //     width: '40%',
 //     justifyContent: "flex-start",
-//     alignItems: "center", 
+//     alignItems: "center",
 //     //borderWidth: 5,
 //     //borderColor: "red",
 //   },
 //   atuImage: {
 //     height: "100%",
 //     width: "100%",
-//     resizeMode: "contain", 
+//     resizeMode: "contain",
 //     transform: [{ scale: 2.55}],
 //   },
 //   spaceHeader: {
@@ -423,7 +423,7 @@ export default function App() {
 //     width: '22%',
 //     justifyContent: "flex-end",
 //     //borderWidth: 5,
-//     //borderColor: "black",  
+//     //borderColor: "black",
 //   },
 //   tappText: {
 //     textAlign: "left",

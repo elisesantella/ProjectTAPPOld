@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -11,22 +11,27 @@ function Transaction({ navigation }) {
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
-        <View style ={styles.content}>
-          <View style ={styles.qrContainer}/>
-          <View style ={styles.space1}/>
-          <View style ={styles.amountBox}>
-            <Text style={styles.text}>
-              <Text>€ Amount:</Text>
-            </Text>
+        <ImageBackground 
+            source={require('./backgroundTransaction.png')} 
+            resizeMode= "stretch" 
+            style={styles.background}>
+          <View style ={styles.content}>
+            <View style ={styles.qrContainer}/>
+            <View style ={styles.space1}/>
+            <View style ={styles.amountBox}>
+              <Text style={styles.text}>
+                <Text>€ Amount:</Text>
+              </Text>
+            </View>
+            <View style ={styles.space2}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Approved')}>
+                <Text style={styles.textConfirm}>OK</Text>
+              </TouchableOpacity>
+              <View style ={styles.companyEntry}/>
+            </View> 
           </View>
-          <View style ={styles.space2}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Approved')}>
-              <Text style={styles.textConfirm}>OK</Text>
-            </TouchableOpacity>
-            <View style ={styles.companyEntry}/>
-          </View> 
-        </View>
+        </ImageBackground>
       </View>
       <Footer></Footer>
     </View>
@@ -49,6 +54,13 @@ const styles = StyleSheet.create({
       borderWidth: 5,
       borderColor: "teal",
       borderTopWidth: 0,
+  },
+  background: {
+    flexDirection: "column",
+    height: "100%",
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   content: {
       //borderWidth: 5,

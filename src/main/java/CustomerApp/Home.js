@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { startTransition } from 'react';
-import { Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
+import { ImageBackground, Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
   TouchableWithoutFeedback, Button, Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,6 +12,10 @@ function Home({ navigation }){
       <View style={styles.container}>
         <Header></Header>
         <View style={styles.bodyContainer}>
+        <ImageBackground 
+            source={require('./backgroundHome.png')} 
+            resizeMode= "stretch" 
+            style={styles.background}>
           <View style={styles.contentContainer}>
             <View style={styles.dateContainer}>
               <View style={styles.dateSpace}></View>
@@ -46,6 +50,7 @@ function Home({ navigation }){
               </View> 
             </View>
           </View>
+          </ImageBackground>
         </View>
         <Footer></Footer>
       </View>
@@ -68,6 +73,13 @@ function Home({ navigation }){
     borderWidth: 5,
     borderColor: "teal",
     borderTopWidth: 0,
+    },
+    background: {
+      flexDirection: "column",
+      height: "100%",
+      width: '100%',
+      justifyContent: "center",
+      alignItems: "center",
     },
     contentContainer: {
       justifyContent: "center",

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { startTransition } from 'react';
-import { Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
+import { ImageBackground, Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
   TouchableWithoutFeedback, Button, Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,18 +12,23 @@ function Transaction({ navigation }){
       <View style={styles.container}>
         <Header></Header>
         <View style={styles.bodyContainer}>
-          <View style={styles.contentContainer}>
-          <View style={styles.qrContainer}></View>
-          <View style={styles.spaceLoginSignUp}></View>
-            <View style ={styles.loginSignUpButton}>
-              <Text style={styles.dateText}>Scan QR Code</Text>
-              <TouchableOpacity
-              onPress={() => navigation.navigate('Approved')}>
-              <Text style={styles.textConfirm}>OK</Text>
-              </TouchableOpacity>
+          <ImageBackground 
+              source={require('./backgroundTransaction.png')} 
+              resizeMode= "stretch" 
+              style={styles.background}>
+            <View style={styles.contentContainer}>
+              <View style={styles.qrContainer}></View>
+              <View style={styles.space}></View>
+              <View style ={styles.textBox}>
+                <Text style={styles.text}>Scan QR Code</Text>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('Approved')}>
+                <Text style={styles.textConfirm}>OK</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.space}></View>
             </View>
-            <View style={styles.spaceLoginSignUp}></View>
-          </View>
+          </ImageBackground>
         </View>
         <Footer></Footer>
     </View>
@@ -47,6 +52,13 @@ function Transaction({ navigation }){
       borderColor: "teal",
       borderTopWidth: 0,
     },
+    background: {
+      flexDirection: "column",
+      height: "100%",
+      width: '100%',
+      justifyContent: "center",
+      alignItems: "center",
+    },
     contentContainer: {
       justifyContent: "center",
       alignItems: "center",
@@ -63,7 +75,7 @@ function Transaction({ navigation }){
       justifyContent: "center",
       alignItems: "center",
     },
-    loginSignUpButton: {
+    textBox: {
       backgroundColor: "cadetblue",
       justifyContent: "center",
       alignItems: "center",
@@ -76,13 +88,13 @@ function Transaction({ navigation }){
       borderBottomLeftRadius: 15,
       borderBottomRightRadius: 15,
     },
-    dateText: {
+    text: {
       textAlign: "center",
       fontSize: 25,
       fontWeight: "bold",
       color: "midnightblue",
     },
-    spaceLoginSignUp: {
+    space: {
       height: "15%",
       width: '100%',
      // borderWidth: 5,
