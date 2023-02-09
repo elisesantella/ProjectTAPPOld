@@ -5,16 +5,16 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 function Header() {
     return(
         <View style ={styles.headerContainer}>
-            <View style ={styles.ATUContainer}>
-                <View style ={styles.ATUSpace}/>
-                <View style ={styles.ATUImageContainer}>
+            <View style ={styles.atuContainer}>
+                <View style ={styles.atuSpace}/>
+                <View style ={styles.atuImageContainer}>
                     <Image 
-                        style={styles.ATUimage}
+                        style={styles.atuImage}
                         source={require('./ATU_Logo.png')} />
                 </View>
             </View>
             <View style ={styles.spaceHeader}/>
-            <View style ={styles.TAPPContainer}>
+            <View style ={styles.tappContainer}>
                 <View style ={styles.logoContainer}>
                     <View style ={styles.logoSpace}/>
                         <View style ={styles.logoImageContainer}>
@@ -23,26 +23,27 @@ function Header() {
                                 source={require('./TappLogo2.png')} />
                         </View>
                 </View>
-                <View style ={styles.TAPPTextContainer}>
-                    <Text style={styles.TAPPtext}>
+                <View style ={styles.tappTextContainer}>
+                    <Text style={styles.tappText}>
                         <Text>TAPP</Text>
                     </Text>
                 </View>
             </View>
         </View>
     );
-  }
+}
 
 const styles = StyleSheet.create({
     headerContainer: {
+        flex: 3,
         flexDirection: "row",
         backgroundColor: "aliceblue",
-        height: "15%",
-        width: '100%',
+        //height: "15%",
+        //width: '100%',
         borderWidth: 5,
         borderColor: "teal",
     },
-    ATUContainer: {
+    atuContainer: {
         flexDirection: "column",
         height: "100%",
         width: '40%',
@@ -50,21 +51,21 @@ const styles = StyleSheet.create({
         //borderWidth: 5,
         //borderColor: "red",
     },
-    ATUSpace: {
+    atuSpace: {
         height: "30%",
         width: '100%',
         justifyContent: "flex-start",
         //borderWidth: 5,
         //borderColor: "blue",
     },
-    ATUImageContainer: {
+    atuImageContainer: {
         height: "190%",
         width: '100%',
         justifyContent: "flex-end",
         //borderWidth: 5,
         //borderColor: "blue",
     },
-    ATUimage: {
+    atuImage: {
         alignSelf: "center",
         height: "100%",
         width: "100%",
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
        // borderWidth: 5,
         //borderColor: "black",
     },
-    TAPPContainer: {
+    tappContainer: {
         flexDirection: "row",
         height: "100%",
         width: '55%',
@@ -113,12 +114,12 @@ const styles = StyleSheet.create({
         height: "80%",
         width: "89%",
     },
-    TAPPTextContainer: {
+    tappTextContainer: {
         flexDirection: "column-reverse",
         //borderWidth: 5,
         //borderColor: "red",
     },
-    TAPPtext: {
+    tappText: {
         textAlign: "center",
         fontSize: 60,
         fontWeight: "bold",
@@ -127,7 +128,6 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: -3, height: 3},
         textShadowRadius: 5,
     },
-  });
+});
   
-
-  export default Header;
+export default Header;
