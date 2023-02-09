@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -12,31 +12,36 @@ function Home({ navigation }) {
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
-        <View style ={styles.content}>
-          <View style ={styles.dateContainer}>
-            <View style ={styles.spaceDate}/>
-            <View style ={styles.date}>
+        <ImageBackground 
+            source={require('./backgroundHome.png')} 
+            resizeMode= "stretch" 
+            style={styles.background}>
+          <View style ={styles.content}>
+            <View style ={styles.dateContainer}>
+              <View style ={styles.spaceDate}/>
+              <View style ={styles.date}>
+                <Text style={styles.text}>
+                  <Text>DATE:</Text>
+                </Text>
+              </View>
+            </View>
+            <View style ={styles.space}/>
+            <View style ={styles.recentTransBox}>
               <Text style={styles.text}>
-                <Text>DATE:</Text>
+                <Text>Recent Transactions:</Text>
               </Text>
             </View>
+            <View style ={styles.space}/>
+            <View style ={styles.transactionEntry}/>
+            <View style ={styles.space}/>
+            <View style ={styles.makeSaleButton}>
+              <TouchableOpacity
+              onPress={() => navigation.navigate('Amount')}>
+              <Text style={styles.text}>Make Sale</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style ={styles.space}/>
-          <View style ={styles.recentTransBox}>
-            <Text style={styles.text}>
-              <Text>Recent Transactions:</Text>
-            </Text>
-          </View>
-          <View style ={styles.space}/>
-          <View style ={styles.transactionEntry}/>
-          <View style ={styles.space}/>
-          <View style ={styles.makeSaleButton}>
-            <TouchableOpacity
-            onPress={() => navigation.navigate('Amount')}>
-            <Text style={styles.text}>Make Sale</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </ImageBackground>
       </View>
       <Footer></Footer>
     </View>
@@ -59,6 +64,13 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "teal",
     borderTopWidth: 0,
+  },
+  background: {
+    flexDirection: "column",
+    height: "100%",
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   content: {
     //borderWidth: 5,
@@ -145,6 +157,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
+    shadowColor: "midnightblue",
+    shadowOpacity: 0.5,
+    shadowRadius: 15 ,
+    shadowOffset : { width: 7, height: 7},
   },
 });
   

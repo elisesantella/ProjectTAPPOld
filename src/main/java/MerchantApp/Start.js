@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -11,28 +11,33 @@ function Start({ navigation }) {
         <View style={styles.container}>
             <Header></Header>
             <View style ={styles.mainBody}>
-                <View style ={styles.content}>
-                    <View style ={styles.loginSignUpButton}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Home')}>
-                            <Text style={styles.text}>Login</Text>
-                        </TouchableOpacity>
+                <ImageBackground 
+                        source={require('./background.png')} 
+                        resizeMode= "stretch" 
+                        style={styles.background}>
+                    <View style ={styles.content}>
+                        <View style ={styles.loginSignUpButton}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Home')}>
+                                <Text style={styles.text}>Login</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style ={styles.spaceLoginSignUp}/>
+                        <View style ={styles.loginSignUpButton}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('SignUp')}>
+                                <Text style={styles.text}>Sign Up</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style ={styles.spaceLoginSignUp}/>
+                        <View style ={styles.imageContainer}>
+                            <Image
+                                style={styles.logoImage}
+                                source={require('./TappLogo.png')} />
+                        </View>
                     </View>
-                    <View style ={styles.spaceLoginSignUp}/>
-                    <View style ={styles.loginSignUpButton}>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('SignUp')}>
-                            <Text style={styles.text}>Sign Up</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style ={styles.spaceLoginSignUp}/>
-                    <View style ={styles.imageContainer}>
-                        <Image
-                            style={styles.logoImage}
-                            source={require('./TappLogo.png')} />
-                    </View>
-                </View>
-            </View>
+                </ImageBackground>
+             </View>
             <Footer></Footer>
         </View>
     );
@@ -54,6 +59,13 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         borderColor: "teal",
         borderTopWidth: 0,
+    },
+    background: {
+        flexDirection: "column",
+        height: "100%",
+        width: '100%',
+        justifyContent: "center",
+        alignItems: "center",
     },
     content: {
         //borderWidth: 5,

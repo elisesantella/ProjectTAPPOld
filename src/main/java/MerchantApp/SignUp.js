@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -15,45 +15,50 @@ function SignUp({ navigation }) {
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
-        <View style ={styles.contents2}>
-          <View style ={styles.loginSignUpButton}>
-            <Text style={styles.text2}>
-              <Text>Enter Company Name</Text>
-            </Text>
-          </View>
-            <SafeAreaView>
-              <TextInput
-                  style={styles.input}
-                  onChangeText={onChangeCompany}
-                  value={company}
-                  placeholder="Enter Company"
-                  placeholderTextColor="lightsteelblue"
-                  keyboardType="default"
-              />
-            </SafeAreaView>
-          <View style ={styles.loginSignUpButton}>
-          <Text style={styles.text2}>
-              <Text>Enter a PIN</Text>
-            </Text>
-          </View>
-          <SafeAreaView>
-              <TextInput
-                  style={styles.input}
-                  onChangeText={onChangePin}
-                  value={pin}
-                  placeholder="Enter PIN"
-                  placeholderTextColor="lightsteelblue"
-                  keyboardType="default"
-                  secureTextEntry="true"
-              />
-            </SafeAreaView>
-            <View style ={styles.buttonConfirm}>
-            <TouchableOpacity
-            onPress={() => navigation.navigate('Start')}>
-            <Text style={styles.textConfirm}>Confirm</Text>
-            </TouchableOpacity>
+        <ImageBackground 
+            source={require('./backgroundSignUp.png')} 
+            resizeMode= "stretch" 
+            style={styles.background}>
+          <View style ={styles.contents2}>
+            <View style ={styles.loginSignUpButton}>
+              <Text style={styles.text2}>
+                <Text>Enter Company Name</Text>
+              </Text>
             </View>
-        </View>
+              <SafeAreaView>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={onChangeCompany}
+                    value={company}
+                    placeholder="Enter Company"
+                    placeholderTextColor="lightsteelblue"
+                    keyboardType="default"
+                />
+              </SafeAreaView>
+            <View style ={styles.loginSignUpButton}>
+            <Text style={styles.text2}>
+                <Text>Enter a PIN</Text>
+              </Text>
+            </View>
+            <SafeAreaView>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={onChangePin}
+                    value={pin}
+                    placeholder="Enter PIN"
+                    placeholderTextColor="lightsteelblue"
+                    keyboardType="default"
+                    secureTextEntry="true"
+                />
+              </SafeAreaView>
+              <View style ={styles.buttonConfirm}>
+              <TouchableOpacity
+              onPress={() => navigation.navigate('Start')}>
+              <Text style={styles.textConfirm}>Confirm</Text>
+              </TouchableOpacity>
+              </View>
+          </View>
+        </ImageBackground>
       </View>
       <Footer></Footer>
     </View>
@@ -76,6 +81,13 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "teal",
     borderTopWidth: 0,
+  },
+  background: {
+    flexDirection: "column",
+    height: "100%",
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
   },
   contents2: {
     //borderWidth: 5,
