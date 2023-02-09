@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { startTransition } from 'react';
-import { Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
-  TouchableWithoutFeedback, Button, Image, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
@@ -9,35 +8,37 @@ import Footer from './Footer';
 
 function Start({ navigation }) {
     return(
-      <View style={styles.container}>
-         <Header></Header>
-         <View style={styles.bodyContainer}>
-          <View style={styles.contentContainer}>
-            <View style ={styles.loginSignUpButton}>
-              <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.loginSignUpText}>Login</Text>
-              </TouchableOpacity>
+        <View style={styles.container}>
+            <Header></Header>
+            <View style ={styles.mainBody}>
+                <View style ={styles.contentOne}>
+                    <View style ={styles.loginSignUpButton}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Home')}>
+                            <Text style={styles.text}>Login</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style ={styles.spaceLoginSignUp}/>
+                    <View style ={styles.loginSignUpButton}>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Sign Up')}>
+                            <Text style={styles.text}>Sign Up</Text>
+                        </TouchableOpacity>
+                    </View>
+                <View style ={styles.spaceLoginSignUp}/>
+                    <View style ={styles.imageContainer}>
+                        <View style ={styles.Logoimage}>
+                            <Image
+                                style={styles.Logoimage}
+                                source={require('./TappLogo.png')} />
+                        </View>
+                    </View>
+                </View>
             </View>
-            <View style={styles.spaceLoginSignUp}></View>
-            <View style ={styles.loginSignUpButton}>
-              <TouchableOpacity
-              onPress={() => navigation.navigate('Sign Up')}>
-              <Text style={styles.loginSignUpText}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.spaceLoginSignUp}></View>
-            <View style={styles.tappLogoContainer}>
-              <Image
-                style={styles.tappLogoimage}
-                source={require('./TappLogo.png')} />
-            </View>
-          </View>
-         </View>
-         <Footer></Footer>
+            <Footer></Footer>
         </View>
-    );
-  }
+      );
+    }
 
 const styles = StyleSheet.create({
     container: {
@@ -45,29 +46,22 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         flexDirection: "column",
     },
-    bodyContainer: {
+    mainBody: {
         flexDirection: "column",
         backgroundColor: "powderblue",
         height: "70%",
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
+        borderWidth: 5,
+        borderColor: "teal",
+        borderTopWidth: 0,
     },
-    tappHeaderlogoContainer: {
-        flexDirection: "row",
-        height: "100%",
-        width: '22%',
-        justifyContent: "flex-end",
-        //borderWidth: 5,
-        //borderColor: "black",
-    },
-    contentContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        height: "80%",
-        width: '65%',
+    contentOne: {
         //borderWidth: 5,
         //borderColor: "teal",
+        height: "80%",
+        width: '60%',
     },
     loginSignUpButton: {
         backgroundColor: "cadetblue",
@@ -77,21 +71,27 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 5,
         borderColor: "teal",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
-    loginSignUpText: {
+    text: {
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
-        color: "black",
+        color: "midnightblue",
+        //borderWidth: 5,
+        //borderColor: "yellow",
     },
     spaceLoginSignUp: {
         height: "15%",
         width: '100%',
-        // borderWidth: 5,
+        //borderWidth: 5,
         //borderColor: "red",
         padding: 15,
     },
-    tappLogoContainer: {
+    imageContainer: {
         backgroundColor: "white",
         borderWidth: 5,
         borderColor: "teal",
@@ -99,12 +99,18 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
-    tappLogoimage: {
+    Logoimage: {
         height: "100%",
         width: "100%",
+        //borderWidth: 5,
+        //borderColor: "teal",
         resizeMode: "contain",
     },
 });
 
-export default Start;
+  export default Start;

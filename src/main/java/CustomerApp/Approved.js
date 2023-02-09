@@ -1,117 +1,140 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { startTransition } from 'react';
-import { Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
-  TouchableWithoutFeedback, Button, Image, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
-function Approved({ navigation }){
+
+function Approved({ navigation }) {
     return(
-      <View style={styles.container}>
-        <Header></Header>
-        <View style={styles.bodyContainer}>
-          <View style={styles.contentContainer}>
-            <View style ={styles.loginSignUpButton}>
-              <Text style={styles.dateText}>Transaction Approved</Text>
-            </View>
-            <View style={styles.spaceApproved}></View>
-            <View style ={styles.loginSignUpButton}>
-              <Text style={styles.dateText}>Amount Of:</Text>
-            </View>
-            <View style={styles.spaceLoginSignUp}>
-              <View style={styles.entrySpace}></View>
-            </View>
-            <View style={styles.spaceLoginSignUp}></View>
-            <View style={styles.buttonReturn}>
-              <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}>
-              <Text style={styles.whiteText}>Return to Home</Text>
-              </TouchableOpacity>
+        <View style={styles.container}>
+          <Header></Header>
+          <View style ={styles.mainBody}>
+            <View style ={styles.contents2}>
+              <View style ={styles.loginSignUpButton}>
+                <Text style={styles.text2}>
+                  <Text>Transaction Approved</Text>
+                </Text>
+              </View>
+              <View style ={styles.spaceHome}/>
+              <View style ={styles.loginSignUpButton}>
+                <Text style={styles.text2}>
+                  <Text>Amount Of:</Text>
+                </Text>
+              </View>
+              <View style ={styles.spaceLoginSignUp}>
+              <View style ={styles.companyEntry}/>
+              </View> 
+              <View style ={styles.spaceLoginSignUp}/>
+                <View style ={styles.buttonReturn}>
+                <TouchableOpacity
+                onPress={() => navigation.navigate('Home')}>
+                <Text style={styles.textConfirm}>Return to Home</Text>
+                </TouchableOpacity>
+                </View>
             </View>
           </View>
+          <Footer></Footer>
         </View>
-        <Footer></Footer>
-      </View>
-    );
-  }
+      );
+    }
 
-
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: "white",
-      flexDirection: "column",
+        flex: 1,
+        backgroundColor: "white",
+        flexDirection: "column",
     },
-    bodyContainer: {
-    flexDirection: "column",
-    backgroundColor: "powderblue",
-    height: "70%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
+    mainBody: {
+        flexDirection: "column",
+        backgroundColor: "powderblue",
+        height: "70%",
+        width: '100%',
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 5,
+        borderColor: "teal",
+        borderTopWidth: 0,
     },
-    contentContainer: {
-      justifyContent: "center",
-      alignItems: "center",
-      height: "80%",
-      width: '65%',
-      //borderWidth: 5,
-      //borderColor: "teal",
-    },
-    loginSignUpButton: {
-      backgroundColor: "cadetblue",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "15%",
-      width: '100%',
-      borderWidth: 5,
-      borderColor: "teal",
+    contents2: {
+        //borderWidth: 5,
+        //borderColor: "yellow",
+        height: "80%",
+        width: '80%',
+        justifyContent: "center",
+        alignItems: "center",
     },
     buttonReturn: {
-      backgroundColor: "teal",
-      borderWidth: 5,
-      borderColor: "darkslategrey",
-      height: "15%",
-      width: '80%',
-      justifyContent: "center",
-      alignItems: "center",
+        backgroundColor: "teal",
+        borderWidth: 5,
+        borderColor: "darkslategrey",
+        height: "15%",
+        width: '60%',
+        justifyContent: "center",
+        alignItems: "center",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
-    whiteText: {
-      textAlign: "center",
-      fontSize: 25,
-      fontWeight: "bold",
-      color: "white",
+    textConfirm: {
+        textAlign: "center",
+        fontSize: 25,
+        fontWeight: "bold",
+        color: "white",
+        //borderWidth: 5,
+        //borderColor: "yellow",
     },
-    dateText: {
-      textAlign: "center",
-      fontSize: 25,
-      fontWeight: "bold",
-      color: "black",
+    text2: {
+        textAlign: "center",
+        fontSize: 25,
+        fontWeight: "bold",
+        color: "midnightblue",
+        //borderWidth: 5,
+        //borderColor: "yellow",
+    },
+    loginSignUpButton: {
+        backgroundColor: "cadetblue",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "15%",
+        width: '100%',
+        borderWidth: 5,
+        borderColor: "teal",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
     spaceLoginSignUp: {
-      height: "15%",
-      width: '100%',
-     // borderWidth: 5,
-      //borderColor: "red",
-      padding: 15,
+        height: "15%",
+        width: '100%',
+        //borderWidth: 5,
+        //borderColor: "red",
+        padding: 15,
     },
-    spaceApproved: {
-      height: "2%",
-      width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
-      padding: 5,
+    companyEntry: {
+        backgroundColor: "white",
+        height: "15%",
+        width: '100%',
+        borderWidth: 3,
+        borderColor: "teal",
+        padding: 15,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
-    entrySpace: {
-      backgroundColor: "white",
-      height: "15%",
-      width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
-      padding: 15,
+    spaceHome: {
+        height: "5%",
+        width: '100%',
+        //borderWidth: 5,
+        //borderColor: "red",
+        padding: 5,
     },
-  });
+});
+  
 
   export default Approved;

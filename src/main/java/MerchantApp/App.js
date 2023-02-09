@@ -15,8 +15,24 @@ import Amount from './Amount';
 
 const Stack = createNativeStackNavigator();
 
-export default function App()
+
+export default function App() 
 {
+
+//   handlePress()
+//   {
+//   fetch('http://10.222.22.22:3000/',{
+//     method: 'POST',
+//     body: JSON.stringify({
+//       a:'hello'
+//     }),
+//     headers:{"Content-Type": "application/json"}
+//   })
+//   .then(function(response){
+//     return response.json()
+//   }).catch(error => console.log(error));
+//   }
+
   return (
     // <View style={styles.container}>
     //   <StatusBar style="auto" />
@@ -362,7 +378,7 @@ const styles = StyleSheet.create({
 //     <View style={styles.container}>
 //       <View style ={styles.headerContainer}>
 //         <View style ={styles.ATUContainer}>
-//                 <Image
+//                 <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./ATU_Logo.png')} />
 //               </View>
@@ -391,7 +407,7 @@ const styles = StyleSheet.create({
 //           <View style ={styles.spaceLoginSignUp}/>
 //             <View style ={styles.imageContainer}>
 //               <View style ={styles.Logoimage}>
-//                 <Image
+//                 <Image 
 //                   style={styles.Logoimage}
 //                   source={require('./TappLogo.png')} />
 //               </View>
@@ -416,7 +432,7 @@ const styles = StyleSheet.create({
 //       <View style ={styles.headerContainer}>
 //         <View style ={styles.ATUContainer}>
 //         <View style ={styles.ATUimage}>
-//                 <Image
+//                 <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./ATU_Logo.png')} />
 //               </View>
@@ -424,7 +440,7 @@ const styles = StyleSheet.create({
 //         <View style ={styles.spaceHeader2}/>
 //         <View style ={styles.TAPPContainer2}>
 //         <View style ={styles.logoContainer}>
-//         <Image
+//         <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./TappLogo.png')} />
 //               </View>
@@ -442,7 +458,7 @@ const styles = StyleSheet.create({
 //           </View>
 //           <View style ={styles.spaceLoginSignUp}>
 //           <View style ={styles.companyEntry}/>
-//           </View>
+//           </View> 
 //           <View style ={styles.loginSignUpButton}>
 //           <Text style={styles.text2}>
 //               <Text>Enter a PIN</Text>
@@ -450,7 +466,7 @@ const styles = StyleSheet.create({
 //           </View>
 //           <View style ={styles.spaceLoginSignUp}>
 //           <View style ={styles.pinEntry}/>
-//           </View>
+//           </View> 
 //             <View style ={styles.buttonConfirm}>
 //             <TouchableOpacity
 //             onPress={() => navigation.navigate('Start')}>
@@ -477,7 +493,7 @@ const styles = StyleSheet.create({
 //       <View style ={styles.headerContainer}>
 //         <View style ={styles.ATUContainer}>
 //         <View style ={styles.ATUimage}>
-//                 <Image
+//                 <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./ATU_Logo.png')} />
 //               </View>
@@ -485,7 +501,7 @@ const styles = StyleSheet.create({
 //         <View style ={styles.spaceHeader2}/>
 //         <View style ={styles.TAPPContainer2}>
 //         <View style ={styles.logoContainer}>
-//         <Image
+//         <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./TappLogo.png')} />
 //               </View>
@@ -543,7 +559,7 @@ const styles = StyleSheet.create({
 //       <View style ={styles.headerContainer}>
 //         <View style ={styles.ATUContainer}>
 //         <View style ={styles.ATUimage}>
-//                 <Image
+//                 <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./ATU_Logo.png')} />
 //               </View>
@@ -551,7 +567,7 @@ const styles = StyleSheet.create({
 //         <View style ={styles.spaceHeader2}/>
 //         <View style ={styles.TAPPContainer2}>
 //         <View style ={styles.logoContainer}>
-//         <Image
+//         <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./TappLogo.png')} />
 //               </View>
@@ -577,7 +593,7 @@ const styles = StyleSheet.create({
 //                     keyboardType="numeric"
 //                 />
 //             </SafeAreaView>
-//           </View>
+//           </View> 
 //           <View style ={styles.spaceLoginSignUp}/>
 //             <View style ={styles.buttonOk}>
 //             <TouchableOpacity
@@ -606,7 +622,7 @@ const styles = StyleSheet.create({
 //       <View style ={styles.headerContainer}>
 //         <View style ={styles.ATUContainer}>
 //         <View style ={styles.ATUimage}>
-//                 <Image
+//                 <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./ATU_Logo.png')} />
 //               </View>
@@ -614,7 +630,7 @@ const styles = StyleSheet.create({
 //         <View style ={styles.spaceHeader2}/>
 //         <View style ={styles.TAPPContainer2}>
 //         <View style ={styles.logoContainer}>
-//         <Image
+//         <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./TappLogo.png')} />
 //               </View>
@@ -638,7 +654,7 @@ const styles = StyleSheet.create({
 //             <Text style={styles.textConfirm}>OK</Text>
 //             </TouchableOpacity>
 //           <View style ={styles.companyEntry}/>
-//           </View>
+//           </View> 
 //         </View>
 //       </View>
 //       <View style ={styles.footer}>
@@ -659,7 +675,7 @@ const styles = StyleSheet.create({
 //       <View style ={styles.headerContainer}>
 //         <View style ={styles.ATUContainer}>
 //         <View style ={styles.ATUimage}>
-//                 <Image
+//                 <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./ATU_Logo.png')} />
 //               </View>
@@ -667,7 +683,7 @@ const styles = StyleSheet.create({
 //         <View style ={styles.spaceHeader2}/>
 //         <View style ={styles.TAPPContainer2}>
 //         <View style ={styles.logoContainer}>
-//         <Image
+//         <Image 
 //                   style={styles.ATUimage}
 //                   source={require('./TappLogo.png')} />
 //               </View>
@@ -691,7 +707,7 @@ const styles = StyleSheet.create({
 //           </View>
 //           <View style ={styles.spaceLoginSignUp}>
 //           <View style ={styles.companyEntry}/>
-//           </View>
+//           </View> 
 //           <View style ={styles.spaceLoginSignUp}/>
 //             <View style ={styles.buttonReturn}>
 //             <TouchableOpacity

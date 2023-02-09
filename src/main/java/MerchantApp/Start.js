@@ -11,7 +11,7 @@ function Start({ navigation }) {
         <View style={styles.container}>
             <Header></Header>
             <View style ={styles.mainBody}>
-                <View style ={styles.contentOne}>
+                <View style ={styles.content}>
                     <View style ={styles.loginSignUpButton}>
                         <TouchableOpacity
                             onPress={() => navigation.navigate('Home')}>
@@ -25,20 +25,18 @@ function Start({ navigation }) {
                             <Text style={styles.text}>Sign Up</Text>
                         </TouchableOpacity>
                     </View>
-                <View style ={styles.spaceLoginSignUp}/>
+                    <View style ={styles.spaceLoginSignUp}/>
                     <View style ={styles.imageContainer}>
-                        <View style ={styles.Logoimage}>
-                            <Image
-                                style={styles.Logoimage}
-                                source={require('./TappLogo.png')} />
-                        </View>
+                        <Image
+                            style={styles.logoImage}
+                            source={require('./TappLogo.png')} />
                     </View>
                 </View>
             </View>
             <Footer></Footer>
         </View>
-      );
-    }
+    );
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -49,12 +47,15 @@ const styles = StyleSheet.create({
     mainBody: {
         flexDirection: "column",
         backgroundColor: "powderblue",
-        height: "70%",
+        height: "75%",
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
+        borderWidth: 5,
+        borderColor: "teal",
+        borderTopWidth: 0,
     },
-    contentOne: {
+    content: {
         //borderWidth: 5,
         //borderColor: "teal",
         height: "80%",
@@ -68,12 +69,16 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 5,
         borderColor: "teal",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
     text: {
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
-        color: "black",
+        color: "midnightblue",
         //borderWidth: 5,
         //borderColor: "yellow",
     },
@@ -92,15 +97,12 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: "center",
         alignItems: "center",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
     },
-    Logoimage: {
-        height: "100%",
-        width: "100%",
-        //borderWidth: 5,
-        //borderColor: "teal",
-        resizeMode: "contain",
-    },
-    Logoimage: {
+    logoimage: {
         height: "100%",
         width: "100%",
         //borderWidth: 5,
@@ -109,4 +111,4 @@ const styles = StyleSheet.create({
     },
 });
 
-  export default Start;
+export default Start;

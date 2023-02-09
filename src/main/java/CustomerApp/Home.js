@@ -19,7 +19,7 @@ function Home({ navigation }){
                <Text style={styles.dateText}>Date:</Text>
               </View>
             </View>
-
+  
             <View style ={styles.loginSignUpButton}>
               <Text style={styles.dateText}>Balance:</Text>
             </View>
@@ -36,14 +36,14 @@ function Home({ navigation }){
               onPress={() => navigation.navigate('Transaction')}>
               <Text style={styles.homeText}>Payment</Text>
               </TouchableOpacity>
-              </View>
+              </View> 
               <View style={styles.paymentSpace}></View>
               <View style={styles.paymentButton}>
               <TouchableOpacity
               onPress={() => navigation.navigate('Add Coin')}>
               <Text style={styles.homeText}>Add Coin</Text>
               </TouchableOpacity>
-              </View>
+              </View> 
             </View>
           </View>
         </View>
@@ -65,6 +65,9 @@ function Home({ navigation }){
     width: '100%',
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 5,
+    borderColor: "teal",
+    borderTopWidth: 0,
     },
     contentContainer: {
       justifyContent: "center",
@@ -83,6 +86,10 @@ function Home({ navigation }){
       borderColor: "teal",
       justifyContent: "center",
       alignItems: "center",
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
     },
     dateContainer: {
       flexDirection: "row",
@@ -99,6 +106,10 @@ function Home({ navigation }){
       width: '100%',
       borderWidth: 5,
       borderColor: "teal",
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
     },
     paymentButton: {
       backgroundColor: "cadetblue",
@@ -108,6 +119,10 @@ function Home({ navigation }){
       justifyContent: "flex-start",
       height: "100%",
       width: '48%',
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      borderBottomLeftRadius: 15,
+      borderBottomRightRadius: 15,
     },
     addCoinButton: {
       backgroundColor: "cadetblue",
@@ -122,19 +137,19 @@ function Home({ navigation }){
       textAlign: "center",
       fontSize: 25,
       fontWeight: "bold",
-      color: "black",
+      color: "midnightblue",
     },
     dateText: {
       textAlign: "center",
       fontSize: 25,
       fontWeight: "bold",
-      color: "black",
+      color: "midnightblue",
     },
     homeText: {
       textAlign: "center",
       fontSize: 20,
       fontWeight: "bold",
-      color: "black",
+      color: "midnightblue",
       padding: 10,
     },
     dateSpace: {
@@ -156,9 +171,13 @@ function Home({ navigation }){
       backgroundColor: "white",
       height: "15%",
       width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
+      borderWidth: 3,
+      borderColor: "teal",
       padding: 15,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
     },
     transactionSpace: {
       backgroundColor: "white",
@@ -177,6 +196,6 @@ function Home({ navigation }){
       //borderColor: "blue",
     },
   });
-
+  
 
 export default Home;

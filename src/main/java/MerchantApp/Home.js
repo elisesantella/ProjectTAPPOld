@@ -8,146 +8,144 @@ import Footer from './Footer';
 
 
 function Home({ navigation }) {
-    return(
-      <View style={styles.container}>
-        <Header></Header>
-        <View style ={styles.mainBody}>
-          <View style ={styles.contents2}>
-          <View style ={styles.DateContainer}>
-          <View style ={styles.spaceDate}/>
-            <View style ={styles.Date}>
-            <Text style={styles.text2}>
-              <Text>DATE:</Text>
-            </Text>
-            </View>
-          </View>
-          <View style ={styles.spaceHome}/>
-            <View style ={styles.loginSignUpButton}>
-              <Text style={styles.text2}>
-                <Text>Recent Transactions:</Text>
+  return(
+    <View style={styles.container}>
+      <Header></Header>
+      <View style ={styles.mainBody}>
+        <View style ={styles.content}>
+          <View style ={styles.dateContainer}>
+            <View style ={styles.spaceDate}/>
+            <View style ={styles.date}>
+              <Text style={styles.text}>
+                <Text>DATE:</Text>
               </Text>
             </View>
-            <View style ={styles.spaceHome}/>
-            <View style ={styles.transitionEntry}/>
-            <View style ={styles.spaceHome}/>
-              <View style ={styles.buttonMakeSale}>
-              <TouchableOpacity
-              onPress={() => navigation.navigate('Amount')}>
-              <Text style={styles.text}>Make Sale</Text>
-              </TouchableOpacity>
-              </View>
+          </View>
+          <View style ={styles.space}/>
+          <View style ={styles.recentTransBox}>
+            <Text style={styles.text}>
+              <Text>Recent Transactions:</Text>
+            </Text>
+          </View>
+          <View style ={styles.space}/>
+          <View style ={styles.transactionEntry}/>
+          <View style ={styles.space}/>
+          <View style ={styles.makeSaleButton}>
+            <TouchableOpacity
+            onPress={() => navigation.navigate('Amount')}>
+            <Text style={styles.text}>Make Sale</Text>
+            </TouchableOpacity>
           </View>
         </View>
-        <Footer></Footer>
       </View>
-    );
-  }
+      <Footer></Footer>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "white",
-      flexDirection: "column",
-    },
-    mainBody: {
-      flexDirection: "column",
-      backgroundColor: "powderblue",
-      height: "70%",
-      width: '100%',
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    contents2: {
-      //borderWidth: 5,
-      //borderColor: "yellow",
-      height: "80%",
-      width: '80%',
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    buttonMakeSale: {
-      backgroundColor: "cadetblue",
-      borderWidth: 5,
-      borderColor: "teal",
-      height: "15%",
-      width: '50%',
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    text2: {
-      textAlign: "center",
-      fontSize: 25,
-      fontWeight: "bold",
-      color: "black",
-      //borderWidth: 5,
-      //borderColor: "yellow",
-    },
-    loginSignUpButton: {
-      backgroundColor: "cadetblue",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "15%",
-      width: '100%',
-      borderWidth: 5,
-      borderColor: "teal",
-    },
-    text: {
-      textAlign: "center",
-      fontSize: 25,
-      fontWeight: "bold",
-      color: "black",
-      //borderWidth: 5,
-      //borderColor: "yellow",
-    },
-    transitionEntry: {
-      backgroundColor: "white",
-      height: "45%",
-      width: '90%',
-      borderWidth: 2,
-      borderColor: "black",
-      padding: 15,
-    },
-    spaceHome: {
-      height: "5%",
-      width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
-      padding: 5,
-    },
-    spaceDate: {
-      flexDirection: "row",
-      height: "100%",
-      width: '60%',
-      justifyContent: "flex-start",
-      //borderWidth: 5,
-      //borderColor: "blue",
-    },
-    DateContainer: {
-      flexDirection: "row",
-      height: "10%",
-      width: '100%',
-      //borderWidth: 5,
-      //borderColor: "black",
-    },
-    Date: {
-      backgroundColor: "aliceblue",
-      flexDirection: "row",
-      height: "100%",
-      width: '40%',
-      borderWidth: 2,
-      borderColor: "teal",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    textDate: {
-      textAlign: "center",
-      fontSize: 10,
-      fontWeight: "bold",
-      color: "black",
-      //borderWidth: 5,
-      //borderColor: "yellow",
-    },
-  });
-
-
-  export default Home;
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    flexDirection: "column",
+  },
+  mainBody: {
+    flexDirection: "column",
+    backgroundColor: "powderblue",
+    height: "75%",
+    width: '100%',
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 5,
+    borderColor: "teal",
+    borderTopWidth: 0,
+  },
+  content: {
+    //borderWidth: 5,
+    //borderColor: "yellow",
+    height: "80%",
+    width: '80%',
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  dateContainer: {
+    flexDirection: "row",
+    height: "10%",
+    width: '100%',
+    //borderWidth: 5,
+    //borderColor: "black",
+  },
+  spaceDate: {
+    flexDirection: "row",
+    height: "100%",
+    width: '60%',
+    justifyContent: "flex-start",
+    //borderWidth: 5,
+    //borderColor: "blue",
+  },
+  date: {
+    backgroundColor: "aliceblue",
+    flexDirection: "row",
+    height: "100%",
+    width: '40%',
+    borderWidth: 2,
+    borderColor: "teal",
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "midnightblue",
+    //borderWidth: 5,
+    //borderColor: "yellow",
+  },
+  space: {
+    height: "5%",
+    width: '100%',
+    //borderWidth: 5,
+    //borderColor: "red",
+    padding: 5,
+  },
+  recentTransBox: {
+    backgroundColor: "cadetblue",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "15%",
+    width: '100%',
+    borderWidth: 5,
+    borderColor: "teal",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  transactionEntry: {
+    backgroundColor: "white",
+    height: "45%",
+    width: '90%',
+    borderWidth: 2,
+    borderColor: "black",
+    padding: 15,
+  },
+  makeSaleButton: {
+    backgroundColor: "cadetblue",
+    borderWidth: 5,
+    borderColor: "teal",
+    height: "15%",
+    width: '50%',
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+});
+  
+export default Home;

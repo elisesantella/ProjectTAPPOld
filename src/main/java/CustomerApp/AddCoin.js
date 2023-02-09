@@ -22,11 +22,12 @@ function AddCoin({ navigation }){
             <View style={styles.spacebetween}></View>
               <SafeAreaView>
               <TextInput
-                  style={styles.input}
-                  onChangeText={onChangeNumber}
-                  value={number}
-                  placeholder="useless placeholder"
-                  keyboardType="numeric"
+                 style={styles.input}
+                 onChangeText={onChangeNumber}
+                 value={number}
+                 placeholder="Enter Amount"
+                 placeholderTextColor="lightsteelblue"
+                 keyboardType="default"
               />
                 </SafeAreaView>
             <View style={styles.spacebetween}></View>
@@ -56,6 +57,9 @@ function AddCoin({ navigation }){
     width: '100%',
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 5,
+    borderColor: "teal",
+    borderTopWidth: 0,
     },
     contentContainer: {
       justifyContent: "center",
@@ -73,6 +77,10 @@ function AddCoin({ navigation }){
       width: '100%',
       borderWidth: 5,
       borderColor: "teal",
+      borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
     },
     confirmButton: {
       backgroundColor: "teal",
@@ -82,6 +90,10 @@ function AddCoin({ navigation }){
       width: '55%',
       borderWidth: 5,
       borderColor: "darkslategrey",
+      borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
     },
     whiteText: {
       textAlign: "center",
@@ -93,7 +105,7 @@ function AddCoin({ navigation }){
       textAlign: "center",
       fontSize: 25,
       fontWeight: "bold",
-      color: "black",
+      color: "midnightblue",
     },
     spaceLoginSignUp: {
       height: "15%",
@@ -119,16 +131,22 @@ function AddCoin({ navigation }){
     },
     input: {
       height: 50,
+      width: 200,
       margin: 12,
       borderWidth: 5,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 10,
+      borderBottomLeftRadius: 10,
+      borderBottomRightRadius: 10,
       padding: 10,
       borderColor: "teal",
       backgroundColor: "white",
       textAlign: "center",
       fontSize: 20,
       fontWeight: "bold",
+      color: "midnightblue",
     },
   });
-
+  
 
   export default AddCoin;
