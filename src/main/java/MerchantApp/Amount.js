@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,43 +9,18 @@ import Footer from './Footer';
 function Amount ({ navigation }) {
   const [number, onChangeNumber] = React.useState(null);
 
-  HandleSubmit = () => {
-    //alert('A form was submitted: ' + this.number);
-    fetch('http://localhost:3000/', {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: 55,
-      }),
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(JSON.stringify(responseData));
-      })
-      .done();
-    }
- 
-//   handlePress = () =>
-//   {
-//   fetch(""http://localhost:3000/"", {
-//   method: "POST",
-//   headers: {
-//     Accept: "application/json",
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     userId: '1',
-//   }),
-// })
-//   .then((response) => response.json())
-//   .then((responseData) => {
-//     console.log(JSON.stringify(responseData));
-//   })
-//   .done();
-// }
+  useEffect(() => {
+    // POST request using fetch inside useEffect React hook
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: number, })
+    };
+    fetch('http://localhost:3000/sms', requestOptions)
+        .then(response => response.json())
+        .then(data => onChangeNumber(data.number));
+      
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -72,12 +47,15 @@ function Amount ({ navigation }) {
                   keyboardType="default"
               />
             </SafeAreaView>
+            {/* <View> 
+              Returned number: {number}
+            </View> */}
           </View> 
           <View style ={styles.space}/>
             <View style ={styles.buttonOk}>
               {/* <Text style={styles.textOk}>OK</Text> */}
               <TouchableOpacity
-                  onPress={ HandleSubmit = () => navigation.navigate('Transaction', {paraKey: number})}>
+                  onPress={() => navigation.navigate('Transaction', {paraKey: number})}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
             </View>
