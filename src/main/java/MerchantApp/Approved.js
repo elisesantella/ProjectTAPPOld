@@ -7,7 +7,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 
-function Approved({ navigation }) {
+function Approved({ navigation, route }) {
+  const paraKey = route.params?.paraKey
   return(
     <View style={styles.container}>
       <Header></Header>
@@ -23,14 +24,14 @@ function Approved({ navigation }) {
               </Text>
             </View>
             <View style ={styles.space1}/>
-            <View style ={styles.titleBox}>
+            <View style ={styles.titleBox2}>
               <Text style={styles.text}>
-                <Text>Amount Of:</Text>
+              <Text>Amount:  €{paraKey}</Text>
               </Text>
             </View>
-            <View style ={styles.space2}>
+            {/* <View style ={styles.space2}>
               <View style ={styles.companyEntry}/>
-            </View> 
+            </View>  */}
             <View style ={styles.space2}/>
             <View style ={styles.buttonReturn}>
               <TouchableOpacity
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   space1: {
-    height: "5%",
+    height: "10%",
     width: '100%',
     //borderWidth: 5,
     //borderColor: "red",
@@ -112,6 +113,19 @@ const styles = StyleSheet.create({
     //borderWidth: 5,
     //borderColor: "red",
     padding: 15,
+  },
+  titleBox2: {
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "15%",
+    width: '100%',
+    borderWidth: 5,
+    borderColor: "teal",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
   companyEntry: {
     backgroundColor: "white",

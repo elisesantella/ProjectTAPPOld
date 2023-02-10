@@ -6,7 +6,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
-function Transaction({ navigation }) {
+
+function Transaction({ navigation, route }) {
+  const paraKey = route.params?.paraKey
   return(
     <View style={styles.container}>
       <Header></Header>
@@ -20,15 +22,19 @@ function Transaction({ navigation }) {
             <View style ={styles.space1}/>
             <View style ={styles.amountBox}>
               <Text style={styles.text}>
-                <Text>€ Amount:</Text>
+                <Text>Amount:  €{route.params.paraKey}</Text>
               </Text>
             </View>
             <View style ={styles.space2}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('Approved')}>
+                onPress={() => navigation.navigate('Approved', {paraKey})}>
                 <Text style={styles.textConfirm}>OK</Text>
               </TouchableOpacity>
-              <View style ={styles.companyEntry}/>
+              {/* <View style ={styles.companyEntry}>
+                <Text style={styles.text}>
+                   {route.params.paraKey}
+                </Text>
+              </View> */}
             </View> 
           </View>
         </ImageBackground>
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
       alignItems: "center",
   },
   space1: {
-    height: "5%",
+    height: "15%",
     width: '100%',
     //borderWidth: 5,
     //borderColor: "red",
@@ -100,9 +106,10 @@ const styles = StyleSheet.create({
   },
   text: {
     textAlign: "center",
-    fontSize: 25,
+    fontSize: 30,
     fontWeight: "bold",
     color: "midnightblue",
+    padding: 15,
     //borderWidth: 5,
     //borderColor: "yellow",
   },
@@ -122,9 +129,10 @@ const styles = StyleSheet.create({
       //borderColor: "yellow",
   },
   companyEntry: {
+      alignSelf: "center",
       backgroundColor: "white",
-      height: "15%",
-      width: '100%',
+      height: "20%",
+      width: '50%',
       borderWidth: 3,
       borderColor: "teal",
       padding: 15,
