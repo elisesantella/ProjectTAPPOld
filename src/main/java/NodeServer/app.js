@@ -2,7 +2,10 @@
 
 const fs = require('fs'); //fs object that contains info with methods & functions that we can call
 const http = require('http')
+const bodyParser = require("body-parser");
+//const express = require('express');
 
+//const app = express();
 //fs.writeFileSync('text.txt', 'Hello from inside a file'); //using a function form fs this creates a new text file text.txt
 
 //Asynchronous meaning the creating file runs in the background
