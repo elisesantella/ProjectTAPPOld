@@ -1,89 +1,72 @@
-//console.log('hello hello hello')
+// Challenge: Fix the errors in this project
 
-const fs = require('fs'); //fs object that contains info with methods & functions that we can call
-const http = require('http')
-const bodyParser = require("body-parser");
-//const express = require('express');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path')
 
-//const app = express();
-//fs.writeFileSync('text.txt', 'Hello from inside a file'); //using a function form fs this creates a new text file text.txt
+const app = express();
 
-//Asynchronous meaning the creating file runs in the background
-//Better way to do it
-// function writeCallbackFunction() {
-//   console.log('done')
-// }
-// fs.writeFile('text.txt', 'Hello from inside a file', writeCallbackFunction) //use fs function to create text.txt file add writing into it and then call the callback function
-
-// console.log('hello')
-
-//Same as above
-// fs.writeFile('text.txt', 'Hello from inside a file', () =>{
-//   console.log('done')
-// }) //use fs function to create text.txt file add writing into it and then call the callback function
-
-// console.log('hello')
-function handleRequest(req, res) { //function with a request function and a respond function
-  console.log('The URL is: ' + req.url)
-  console.log('The request method is: ' + req.method)
-  console.log('')
-  console.log('')
-  //console.log('The request header is: ' + JSON.stringify(req.headers)) //JSON.stringify converst it to a string
-
-  if(req.url === '/page2') {
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>');
-    res.write('<head><title>My Tab</title><head>');
-    res.write('<body>This is /page2 <br><button>test button</button></body>');
-    res.write('</html>');
-    res.end() //ending request so browser doesn't hang
-  }
-  if(req.url === '/page1') {
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>');
-    res.write('<head><title>My Tab</title><head>');
-    res.write('<body>This is /page1 <br><button>test button</button></body>');
-    res.write('</html>');
-    res.end()
-  }
-
-}
-const server = http.createServer(handleRequest)//creates a server and a request function
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.json())
 
 
 
-server.listen(8081)//listen to requests coming in
+app.get('/', (req, res, next) => {
+  res.send('<h1>Hi Elise</h1>');
+});
 
-
-
-
-
-
-// const http = require('http');
-// const fs = require('fs');
-
-// const server = http.createServer((req, res) => {
-//   const url = req.url;
-//   const method = req.method;
-//   if (url === '/') {
-//     res.write('<html>');
-//     res.write('<head><title>Enter Message</title><head>');
-//     res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>');
-//     res.write('</html>');
-//     return res.end();
-//   }
-//   if (url === '/message' && method === 'POST') {
-//     fs.writeFileSync('message.txt', 'DUMMY');
-//     res.statusCode = 302;
-//     res.setHeader('Location', '/');
-//     return res.end();
-//   }
-//   res.setHeader('Content-Type', 'text/html');
-//   res.write('<html>');
-//   res.write('<head><title>My First Page</title><head>');
-//   res.write('<body><h1>Hello from my Node.js Server!</h1></body>');
-//   res.write('</html>');
-//   res.end();
+// app.get('/getFile', (req, res, next) => {
+//   //console.log(__dirname)
+//  // console.log(path.join(__dirname, 'views', 'shop.html'))
+// // console.log(process.mainModule.path)
+//  // path.dirname(process.mainModule.filename)
+//   res.sendFile(path.join(__dirname, 'views', 'shop.html'))
 // });
 
-// server.listen(3000);
+// app.get('/addNumber', (req, res, next) => {
+//   const body = data.number
+//   body.then(data=>{
+//     res.send(data + '<form action="/addTheNumber" method="POST"><form')
+//   }).catch(err=>{
+//     console.log(err)
+//   })
+// });
+
+app.get('/addNumber', (req,res, next)=> {
+
+  console.log(req.body.number);
+
+});
+
+//hello elis
+//why is this not pushing to github
+
+// app.post('/addNumber', (req, res, next) => {
+//   console.log(req.body.name);
+//   res.redirect('/');
+// });
+  
+// app.get('/addNumber', (req, res, next) => {
+//   res.send('<form action="/addTheNumber" method="POST"> <input type="text" name="name"><button type="submit">Add A Product</button> </form>');
+// });
+
+// app.post('/addNumber', (req, res, next) => {
+//   res.send('<form action="/addTheNumber" method="POST"> <input type="text" name="name"><button type="submit">Add A Product</button> </form>');
+// });
+
+// app.post('/addTheNumber', (req, res, next) => {
+//   console.log(req.body.name);
+//   res.redirect('/');
+// });
+
+// app.use('/admin', (req, res, next) => {
+//   console.log(req.url)
+//   res.send('<h1>This is an admin page</h1><br>' + req.url);
+// });
+
+// app.use('/', (req, res, next) => {
+//   res.send('<h1>404 page not found</h1>');
+// });
+
+app.listen(3000);

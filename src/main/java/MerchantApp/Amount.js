@@ -1,26 +1,48 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import {ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Alert, ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
-function Amount ({ navigation }) {
-  const [number, onChangeNumber] = React.useState(null);
+function Amount ({ navigation, route}) {
+  const [number, onSetNumber] = React.useState("");
 
-  useEffect(() => {
-    // POST request using fetch inside useEffect React hook
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: number, })
-    };
-    fetch('http://localhost:3000/sms', requestOptions)
-        .then(response => response.json())
-        .then(data => onChangeNumber(data.number));
+  // useEffect(() => {
+  //   // POST request using fetch inside useEffect React hook
+  //   const requestOptions = {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ amount: number, })
+  //   };
+  //   fetch('http://localhost:3000/sms', requestOptions)
+  //       .then(response => response.json())
+  //       .then(data => onChangeNumber(data.number));
       
-  }, []);
+  // }, []);
+
+  //hello elise
+
+  const submitData = (number)=>{
+    fetch("http://localhost:3000/addNumber",{
+        method:"post",
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({number:number
+        })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        Alert.alert(`${data.number} is saved successfully`)
+        navigation.navigate('Transaction', {paraKey: number})
+    })
+    .catch(err=>{
+      Alert.alert("someting went wrong")
+      navigation.navigate('Transaction', {paraKey: number})
+  })
+  }
 
   return (
     <View style={styles.container}>
@@ -40,7 +62,7 @@ function Amount ({ navigation }) {
             <SafeAreaView>
               <TextInput
                   style={styles.input}
-                  onChangeText={onChangeNumber}
+                  onChangeText={onSetNumber}
                   value={number}
                   placeholder="Enter Amount"
                   placeholderTextColor="lightsteelblue"
@@ -55,7 +77,7 @@ function Amount ({ navigation }) {
             <View style ={styles.buttonOk}>
               {/* <Text style={styles.textOk}>OK</Text> */}
               <TouchableOpacity
-                  onPress={() => navigation.navigate('Transaction', {paraKey: number})}>
+                  onPress={()  => submitData(number)}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
             </View>
