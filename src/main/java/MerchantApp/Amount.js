@@ -1,13 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import {Alert, ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
+import QRCode from 'react-native-qrcode-svg';
+
 function Amount ({ navigation, route}) {
-  const [number, onSetNumber] = React.useState("");
+  const [number, onSetNumber] = React.useState('');
+  const [qrvalue, setQrvalue] = useState('');
+  let myQRCode = useRef();
+
+  // const shareQRCode = () => {
+  //   myQRCode.toDataURL((dataURL) => {
+  //     console.log(dataURL);
+  //     let shareImageBase64 = {
+  //       title: 'React Native',
+  //       url: `data:image/png;base64,${dataURL}`,
+  //       subject: 'Share Link', //  for email
+  //     };
+  //     Share.share(shareImageBase64).catch((error) => console.log(error));
+  //   });
+  // };
 
   // useEffect(() => {
   //   // POST request using fetch inside useEffect React hook
@@ -19,7 +35,7 @@ function Amount ({ navigation, route}) {
   //   fetch('http://localhost:3000/sms', requestOptions)
   //       .then(response => response.json())
   //       .then(data => onChangeNumber(data.number));
-      
+
   // }, []);
 
   //hello elise
@@ -36,10 +52,11 @@ function Amount ({ navigation, route}) {
     .then(res=>res.json())
     .then(data=>{
         Alert.alert(`${data.number} is saved successfully`)
-        navigation.navigate('Transaction', {paraKey: number})
+        navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
     })
     .catch(err=>{
       Alert.alert("someting went wrong")
+
       navigation.navigate('Transaction', {paraKey: number})
   })
   }
@@ -48,9 +65,9 @@ function Amount ({ navigation, route}) {
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
-        <ImageBackground 
-            source={require('./backgroundAmount.png')} 
-            resizeMode= "stretch" 
+        <ImageBackground
+            source={require('./backgroundAmount.png')}
+            resizeMode= "stretch"
             style={styles.background}>
           <View style ={styles.content}>
             <View style ={styles.amountBox}>
@@ -69,14 +86,16 @@ function Amount ({ navigation, route}) {
                   keyboardType="default"
               />
             </SafeAreaView>
-            {/* <View> 
+            {/* <View>
               Returned number: {number}
             </View> */}
-          </View> 
+          </View>
           <View style ={styles.space}/>
             <View style ={styles.buttonOk}>
               {/* <Text style={styles.textOk}>OK</Text> */}
               <TouchableOpacity
+                  onChange={setQrvalue}
+                  value={qrvalue}
                   onPress={()  => submitData(number)}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
