@@ -2,22 +2,26 @@ import { StatusBar } from 'expo-status-bar';
 import React, { startTransition } from 'react';
 import { ImageBackground, Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
   TouchableWithoutFeedback, Button, Image, StyleSheet, Text, View } from 'react-native';
+//import QRCodeScanner from 'react-native-qrcode-scanner';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
+import Scan from './Scan';
 
 function Transaction({ navigation }){
     return(
       <View style={styles.container}>
         <Header></Header>
         <View style={styles.bodyContainer}>
-          <ImageBackground 
-              source={require('./backgroundTransaction.png')} 
-              resizeMode= "stretch" 
+          <ImageBackground
+              source={require('./backgroundTransaction.png')}
+              resizeMode= "stretch"
               style={styles.background}>
             <View style={styles.contentContainer}>
-              <View style={styles.qrContainer}></View>
+              <View style={styles.qrContainer}>
+                <Scan></Scan>
+              </View>
               <View style={styles.space}></View>
               <View style ={styles.textBox}>
                 <Text style={styles.text}>Scan QR Code</Text>
