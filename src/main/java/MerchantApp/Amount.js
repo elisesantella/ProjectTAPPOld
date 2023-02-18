@@ -41,17 +41,19 @@ function Amount ({ navigation, route}) {
   //hello elise
 
   const submitData = (number)=>{
-    fetch("http://localhost:3000/addNumber",{
-        method:"post",
+    fetch("https://crazy-berries-vanish-51-37-107-118.loca.lt",{
+        method:"POST",
         headers:{
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({number:number
+        body:JSON.stringify({
+          numberVariable: number,
         })
     })
     .then(res=>res.json())
     .then(data=>{
         Alert.alert(`${data.number} is saved successfully`)
+        console.log(JSON.stringify(data));
         navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
     })
     .catch(err=>{
@@ -107,7 +109,7 @@ function Amount ({ navigation, route}) {
     </View>
   )
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -210,5 +212,5 @@ const styles = StyleSheet.create({
     //borderColor: "yellow",
   },
 });
-  
+
 export default Amount;
