@@ -1,20 +1,58 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React,{useState, useEffect} from 'react';
+import {Box, ImageBackground, Image, StyleSheet, Text, TouchableOpacity, NativeBaseProvider, View, FlatList} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
 
-function Approved({ navigation }) {
+function Approved({ navigation, route}) {
+  const [loading, setLoading] = useState(true);
+  const [number, setNumber] = useState([]);
+
+  const url = "https://sharp-cougars-hope-51-37-107-118.loca.lt"
+
+  // const getData = () => {
+  //     return fetch('https://wise-bees-tie-51-37-107-118.loca.lt')
+  //     .then((response) => response.json())
+  //     .then( (responsejson) => {
+  //       setNumber: responsejson.dataVariable
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        setNumber(json.dataVariable);
+      })
+      .catch((error) => console.error(error))
+  }, []);
+
+  // const renderData = ({item}) => {
+  //   return (
+  //     <View style={{margin:10,borderWidth:0.5,padding:10}}>
+  //       <Text style={{color:"black",fontSize:16,fontWeight:"bold"}}>
+  //         Amount {item.dataVariable}
+  //       </Text>
+  //     </View>
+  //   )
+  // }
+
     return(
         <View style={styles.container}>
+          {/* <Text style={styles.text}>
+            Amount {number}
+          </Text> */}
           <Header></Header>
           <View style ={styles.mainBody}>
-          <ImageBackground 
-            source={require('./backgroundApproved.png')} 
-            resizeMode= "stretch" 
+          <ImageBackground
+            source={require('./backgroundApproved.png')}
+            resizeMode= "stretch"
             style={styles.background}>
             <View style ={styles.content}>
               <View style ={styles.textBox}>
@@ -24,13 +62,15 @@ function Approved({ navigation }) {
               </View>
               <View style ={styles.space1}/>
               <View style ={styles.textBox}>
+
                 <Text style={styles.text}>
-                  <Text>Amount Of:</Text>
+                  <Text>Amount Of:  €{number} </Text>
                 </Text>
+
               </View>
               <View style ={styles.space2}>
               <View style ={styles.entry}/>
-              </View> 
+              </View>
               <View style ={styles.space2}/>
                 <View style ={styles.buttonReturn}>
                 <TouchableOpacity
@@ -45,6 +85,8 @@ function Approved({ navigation }) {
         </View>
       );
     }
+
+
 
 const styles = StyleSheet.create({
     container: {
