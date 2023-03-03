@@ -41,7 +41,7 @@ function Amount ({ navigation, route}) {
   //hello elise
 
   const submitData = (number)=>{
-    fetch("https://crazy-berries-vanish-51-37-107-118.loca.lt",{
+    fetch("https://fancy-berries-bow-109-76-217-145.loca.lt/theNumber",{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
@@ -52,8 +52,8 @@ function Amount ({ navigation, route}) {
     })
     .then(res=>res.json())
     .then(data=>{
-        Alert.alert(`${data.number} is saved successfully`)
-        console.log(JSON.stringify(data));
+        Alert.alert(`${number} is saved successfully`)
+        console.log(data);
         navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
     })
     .catch(err=>{
