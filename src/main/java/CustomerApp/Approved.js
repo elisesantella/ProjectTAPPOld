@@ -11,7 +11,7 @@ function Approved({ navigation, route}) {
   const [loading, setLoading] = useState(true);
   const [number, setNumber] = useState([]);
 
-  const url = "https://sharp-cougars-hope-51-37-107-118.loca.lt"
+  const url = "https://fancy-berries-bow-109-76-217-145.loca.lt/theNumber"
 
   // const getData = () => {
   //     return fetch('https://wise-bees-tie-51-37-107-118.loca.lt')
@@ -50,9 +50,9 @@ function Approved({ navigation, route}) {
           </Text> */}
           <Header></Header>
           <View style ={styles.mainBody}>
-          <ImageBackground
-            source={require('./backgroundApproved.png')}
-            resizeMode= "stretch"
+          <ImageBackground 
+            source={require('./backgroundApproved.png')} 
+            resizeMode= "stretch" 
             style={styles.background}>
             <View style ={styles.content}>
               <View style ={styles.textBox}>
@@ -62,15 +62,15 @@ function Approved({ navigation, route}) {
               </View>
               <View style ={styles.space1}/>
               <View style ={styles.textBox}>
-
+              
                 <Text style={styles.text}>
                   <Text>Amount Of:  €{number} </Text>
                 </Text>
-
+              
               </View>
               <View style ={styles.space2}>
               <View style ={styles.entry}/>
-              </View>
+              </View> 
               <View style ={styles.space2}/>
                 <View style ={styles.buttonReturn}>
                 <TouchableOpacity
@@ -85,8 +85,8 @@ function Approved({ navigation, route}) {
         </View>
       );
     }
-
-
+  
+ 
 
 const styles = StyleSheet.create({
     container: {
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         backgroundColor: "teal",
         borderWidth: 5,
         borderColor: "darkslategrey",
-        height: "15%",
+        height: "19%",
         width: '60%',
         justifyContent: "center",
         alignItems: "center",

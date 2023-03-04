@@ -10,8 +10,8 @@ import QRCode from 'react-native-qrcode-svg';
 
 function Amount ({ navigation, route}) {
   const [number, onSetNumber] = React.useState('');
-  const [qrvalue, setQrvalue] = useState('');
-  let myQRCode = useRef();
+  // const [qrvalue, setQrvalue] = useState('');
+  // let myQRCode = useRef();
 
   // const shareQRCode = () => {
   //   myQRCode.toDataURL((dataURL) => {
@@ -54,7 +54,8 @@ function Amount ({ navigation, route}) {
     .then(data=>{
         Alert.alert(`${number} is saved successfully`)
         console.log(data);
-        navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
+        // navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
+        navigation.navigate('Transaction', {paraKey: number})
     })
     .catch(err=>{
       Alert.alert("someting went wrong")
@@ -96,8 +97,8 @@ function Amount ({ navigation, route}) {
             <View style ={styles.buttonOk}>
               {/* <Text style={styles.textOk}>OK</Text> */}
               <TouchableOpacity
-                  onChange={setQrvalue}
-                  value={qrvalue}
+                  // onChange={setQrvalue}
+                  // value={qrvalue}
                   onPress={()  => submitData(number)}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
@@ -109,7 +110,7 @@ function Amount ({ navigation, route}) {
     </View>
   )
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
     backgroundColor: "cadetblue",
     justifyContent: "center",
     alignItems: "center",
-    height: "15%",
+    height: "18%",
     width: '100%',
     borderWidth: 5,
     borderColor: "teal",
@@ -212,5 +213,5 @@ const styles = StyleSheet.create({
     //borderColor: "yellow",
   },
 });
-
+  
 export default Amount;

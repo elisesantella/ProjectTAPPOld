@@ -21,9 +21,7 @@ function SignUp({ navigation }) {
             style={styles.background}>
           <View style ={styles.contents2}>
             <View style ={styles.loginSignUpButton}>
-              <Text style={styles.text2}>
-                <Text>Enter Company Name</Text>
-              </Text>
+              <Text style={styles.text2}>Enter Company Name</Text>
             </View>
               <SafeAreaView>
                 <TextInput
@@ -36,9 +34,7 @@ function SignUp({ navigation }) {
                 />
               </SafeAreaView>
             <View style ={styles.loginSignUpButton}>
-            <Text style={styles.text2}>
-                <Text>Enter a PIN</Text>
-              </Text>
+            <Text style={styles.text2}>Enter a PIN</Text>
             </View>
             <SafeAreaView>
                 <TextInput
@@ -48,7 +44,7 @@ function SignUp({ navigation }) {
                     placeholder="Enter PIN"
                     placeholderTextColor="lightsteelblue"
                     keyboardType="default"
-                    secureTextEntry="true"
+                    secureTextEntry={true}
                 />
               </SafeAreaView>
               <View style ={styles.buttonConfirm}>
