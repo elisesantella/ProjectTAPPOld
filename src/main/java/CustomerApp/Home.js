@@ -114,7 +114,7 @@ function Home({ navigation }){
       backgroundColor: "cadetblue",
       justifyContent: "center",
       alignItems: "center",
-      height: "15%",
+      height: "19%",
       width: '100%',
       borderWidth: 5,
       borderColor: "teal",

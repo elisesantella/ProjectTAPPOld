@@ -1,15 +1,53 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React,{useState, useEffect} from 'react';
+import {Box, ImageBackground, Image, StyleSheet, Text, TouchableOpacity, NativeBaseProvider, View, FlatList} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
 
 
-function Approved({ navigation }) {
+function Approved({ navigation, route}) {
+  const [loading, setLoading] = useState(true);
+  const [number, setNumber] = useState([]);
+
+  const url = "https://fancy-berries-bow-109-76-217-145.loca.lt/theNumber"
+
+  // const getData = () => {
+  //     return fetch('https://wise-bees-tie-51-37-107-118.loca.lt')
+  //     .then((response) => response.json())
+  //     .then( (responsejson) => {
+  //       setNumber: responsejson.dataVariable
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // }
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        setNumber(json.dataVariable);
+      })
+      .catch((error) => console.error(error))
+  }, []);
+
+  // const renderData = ({item}) => {
+  //   return (
+  //     <View style={{margin:10,borderWidth:0.5,padding:10}}>
+  //       <Text style={{color:"black",fontSize:16,fontWeight:"bold"}}>
+  //         Amount {item.dataVariable}
+  //       </Text>
+  //     </View>
+  //   )
+  // }
+
     return(
         <View style={styles.container}>
+          {/* <Text style={styles.text}>
+            Amount {number}
+          </Text> */}
           <Header></Header>
           <View style ={styles.mainBody}>
           <ImageBackground 
@@ -24,9 +62,11 @@ function Approved({ navigation }) {
               </View>
               <View style ={styles.space1}/>
               <View style ={styles.textBox}>
+              
                 <Text style={styles.text}>
-                  <Text>Amount Of:</Text>
+                  <Text>Amount Of:  €{number} </Text>
                 </Text>
+              
               </View>
               <View style ={styles.space2}>
               <View style ={styles.entry}/>
@@ -45,6 +85,8 @@ function Approved({ navigation }) {
         </View>
       );
     }
+  
+ 
 
 const styles = StyleSheet.create({
     container: {
@@ -129,7 +171,7 @@ const styles = StyleSheet.create({
         backgroundColor: "teal",
         borderWidth: 5,
         borderColor: "darkslategrey",
-        height: "15%",
+        height: "19%",
         width: '60%',
         justifyContent: "center",
         alignItems: "center",

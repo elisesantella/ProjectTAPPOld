@@ -1,24 +1,61 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Header';
 import Footer from './Footer';
-
+import QRCode from 'react-native-qrcode-svg';
 
 function Transaction({ navigation, route }) {
   const paraKey = route.params?.paraKey
+  //const paraKey1 = route.params?.paraKey1
+  //let myQRCode = useRef();
+
+  // const shareQRCode = () => {
+  //   myQRCode.toDataURL((dataURL) => {
+  //     console.log(dataURL);
+  //     let shareImageBase64 = {
+  //       title: 'React Native',
+  //       url: `data:image/png;base64,${dataURL}`,
+  //       subject: 'Share Link', //  for email
+  //     };
+  //     Share.share(shareImageBase64).catch((error) => console.log(error));
+  //   });
+  // };
+
+
   return(
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
-        <ImageBackground 
-            source={require('./backgroundTransaction.png')} 
-            resizeMode= "stretch" 
+        <ImageBackground
+            source={require('./backgroundTransaction.png')}
+            resizeMode= "stretch"
             style={styles.background}>
           <View style ={styles.content}>
-            <View style ={styles.qrContainer}/>
+            <View style ={styles.qrContainer}>
+            {/* <QRCode
+                getRef={(ref) => (myQRCode = ref)}
+                // ref={myQRCode}
+                //QR code value
+                value={route.params.paraKey1}
+                //size of QR Code
+                size={250}
+                //Color of the QR Code (Optional)
+                color="midnightblue"
+                //Background Color of the QR Code (Optional)
+                backgroundColor="white"
+                //Center Logo size  (Optional)
+                logoSize={30}
+                //Center Logo margin (Optional)
+                logoMargin={2}
+                //Center Logo radius (Optional)
+                logoBorderRadius={15}
+                //Center Logo background (Optional)
+                logoBackgroundColor="yellow"
+              /> */}
+            </View>
             <View style ={styles.space1}/>
             <View style ={styles.amountBox}>
               <Text style={styles.text}>
@@ -35,7 +72,7 @@ function Transaction({ navigation, route }) {
                    {route.params.paraKey}
                 </Text>
               </View> */}
-            </View> 
+            </View>
           </View>
         </ImageBackground>
       </View>
@@ -95,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: "cadetblue",
     justifyContent: "center",
     alignItems: "center",
-    height: "15%",
+    height: "18%",
     width: '100%',
     borderWidth: 5,
     borderColor: "teal",
