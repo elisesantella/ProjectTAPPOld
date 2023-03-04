@@ -9,8 +9,8 @@ import QRCode from 'react-native-qrcode-svg';
 
 function Transaction({ navigation, route }) {
   const paraKey = route.params?.paraKey
-  //const paraKey1 = route.params?.paraKey1
-  //let myQRCode = useRef();
+  const paraKey1 = route.params?.paraKey1
+  let myQRCode = useRef();
 
   // const shareQRCode = () => {
   //   myQRCode.toDataURL((dataURL) => {
@@ -35,26 +35,29 @@ function Transaction({ navigation, route }) {
             style={styles.background}>
           <View style ={styles.content}>
             <View style ={styles.qrContainer}>
-            {/* <QRCode
-                getRef={(ref) => (myQRCode = ref)}
-                // ref={myQRCode}
-                //QR code value
-                value={route.params.paraKey1}
-                //size of QR Code
-                size={250}
-                //Color of the QR Code (Optional)
-                color="midnightblue"
-                //Background Color of the QR Code (Optional)
-                backgroundColor="white"
-                //Center Logo size  (Optional)
-                logoSize={30}
-                //Center Logo margin (Optional)
-                logoMargin={2}
-                //Center Logo radius (Optional)
-                logoBorderRadius={15}
-                //Center Logo background (Optional)
-                logoBackgroundColor="yellow"
-              /> */}
+              {/* <QRCode>
+                value= "This is value in QR Code"
+              </QRCode> */}
+              <QRCode
+                  // getRef={(ref) => (myQRCode = ref)}
+                  //QR code value
+                  value={route.params.paraKey1 ? route.params.paraKey1 : 'NA'}
+                  //size of QR Code
+                  size={250}
+                  //Color of the QR Code (Optional)
+                  color="midnightblue"
+                  //Background Color of the QR Code (Optional)
+                  backgroundColor="white"
+                  //Center Logo size  (Optional)
+                  logoSize={30}
+                  //Center Logo margin (Optional)
+                  logoMargin={2}
+                  //Center Logo radius (Optional)
+                  logoBorderRadius={15}
+                  //Center Logo background (Optional)
+                  logoBackgroundColor="yellow"
+                  getRef={myQRCode}
+                />
             </View>
             <View style ={styles.space1}/>
             <View style ={styles.amountBox}>
@@ -114,8 +117,8 @@ const styles = StyleSheet.create({
       alignItems: "center",
   },
   qrContainer: {
-      borderWidth: 5,
-      borderColor: "red",
+     // borderWidth: 5,
+      //borderColor: "red",
       height: "50%",
       width: '80%',
       justifyContent: "center",
