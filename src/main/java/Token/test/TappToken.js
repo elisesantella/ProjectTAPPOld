@@ -57,6 +57,14 @@ contract('TappToken', function(accounts) {
         });
     });
 
+    it('approved tokens for delegated transfer', function() {
+        return TappToken.deployed().then(function(instance) {
+            tokenInstance = instance;
+            return tokenInstance.approve.call(accounts[1], 100); //call approved function
+        }).then(function(success) {
+            assert.equal(success, true, 'it returns true');
+        });
+    });
 
 
 
