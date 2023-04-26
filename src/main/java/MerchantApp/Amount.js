@@ -33,7 +33,7 @@ function Amount ({ navigation, route}) {
 
   const submitData = (price)=>{
 
-    fetch("https://7cf4-109-78-62-166.ngrok-free.app/thePrice",{
+    fetch("https://4b60-109-78-148-98.ngrok-free.app/thePrice",{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'

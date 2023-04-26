@@ -23,7 +23,21 @@ const transactionSchema = new Schema({
   anObject: { type: Object, required: false }
 })
 
+const companySchema = new Schema({
+  companyName: { type: String, required: true },
+  pin: { type: Number, required: true },
+  companyId: { type: String, required: true },
+  anArray: { type: Array, required: false },
+  anObject: { type: Object, required: false }
+})
+
 const Transaction = mongoose.model('Transaction', transactionSchema) // 'Product' refers to the collection, so maps products collection to productSchema; see lecture notes
+const Company = mongoose.model('Company', companySchema)
+
+//let companyName = '';
+//let pin = '';
+const company = [];
+let nextCompanyId = 0;
 
 router.get('/', (req, res, next) => {
   Transaction.find() // Always returns an array
@@ -94,59 +108,58 @@ router.post('/', (req, res, next) => {
     })
 })
 
-router.get('/getSpecificProduct', (req, res, next) => {
-  Transaction.find({ itemId: '1' }) // Always returns an array
-    .then(products => {
-      res.send('getSpecificProduct: ' + JSON.stringify(products[0])) // Return the first one found
+router.get('/signup', (req,res, next)=> {
+
+  res.status(200).json({ companyName: companyName, pin: pin })
+
+})
+
+router.post('/signup', (req, res, next) => {
+  // console.log(req.body.testData)
+  //const company = req.query.company.trim()
+  //let pin = req.query.pin.trim()
+ companyName = req.body.companyName
+ pin = req.body.pin
+  new Company({ companyId: '' + nextCompanyId, companyName: companyName, pin: pin })
+    .save()
+    .then(result => {
+      nextCompanyId++
+      console.log('saved company to database')
+      //res.redirect('/')
+      pin = bcrypt.hashSync(pin + process.env.EXTRA_BCRYPT_STRING, 12),
+      company.push({ companyName: companyName, pin: pin, companyId: nextCompanyId })
+      console.log('company: ', company)
+      res.status(200).json({ 'success': true, companyName: companyName, pin: pin });
     })
     .catch(err => {
-      console.log('Failed to find product: ' + err)
-      res.send('No product found')
+      console.log('failed to signup: ' + err)
+      //res.redirect('/')
+      res.send({ success: false, message: "Error: Sign Up Unsuccessful!" });
     })
 })
 
-router.get('/updateSpecificProduct', (req, res, next) => {
-  Transaction.find({ itemId: '1' }) // Always returns an array
-    .then(products => {
-      let specificProduct = products[0] // pick the first match
-      specificProduct.price = 99.95
-      specificProduct.save() // Should check for errors here too
-      res.redirect('/')
-    })
-    .catch(err => {
-      console.log('Failed to find product: ' + err)
-      res.send('No product found')
-    })
+router.get('/signin', (req,res, next)=> {
+
+  res.status(200).json({ companyName: companyName, pin: pin })
+
 })
 
-router.get('/deleteSpecificProduct', (req, res, next) => {
-  if (!req.session.loggedIn) {
-    res.send({ success: false })
-  }
+router.post('/signin', async (req, res, next) => {
+companyName = req.body.companyName
+pin = req.body.pin
 
-  Transaction.findOneAndRemove({ itemId: '0' })
-    .then(resp => {
-      res.send({ success: true })
-    })
-    .catch(err => {
-      console.log('Failed to find product: ' + err)
-      res.send({ success: false })
-    })
-})
-
-router.get('/signin', async (req, res, next) => {
   let theUser = {}
-  for (let ii = 0; ii < users.length; ii++) {
-    if (req.query.email.trim() == users[ii].userEmail) {
-      theUser.password = users[ii].password
-      theUser.userEmail = users[ii].userEmail
-      theUser.cardId = users[ii].cardId
+  for (let ii = 0; ii < company.length; ii++) {
+    if (req.body.companyName == company[ii].companyName) {
+      theUser.pin = users[ii].pin
+      theUser.companyName = users[ii].companyName
+      theUser.companyId = users[ii].companyId
     }
   }
 
   let checkPass = false
   try {
-    checkPass = await bcrypt.compare(req.query.pass.trim() + process.env.EXTRA_BCRYPT_STRING, users[0].password)
+    checkPass = await bcrypt.compare(req.body.pin + process.env.EXTRA_BCRYPT_STRING, users[0].pin)
   } catch (err) {
     console.log('bcrypt.compare err: ' + err)
     res.send({ success: false })
@@ -159,18 +172,6 @@ router.get('/signin', async (req, res, next) => {
   req.session.isLoggedIn = true
   req.session.theUser = theUser
   res.send({ success: true, login: true })
-})
-
-const users = []
-router.get('/signup', (req, res, next) => {
-  // console.log(req.body.testData)
-  const userEmail = req.query.email.trim()
-  let password = req.query.pass.trim()
-  // do lots of checking / validation
-  password = bcrypt.hashSync(password + process.env.EXTRA_BCRYPT_STRING, 12),
-    users.push({ userEmail: userEmail, password: password, cartId: 1 })
-  console.log('users: ', users)
-  res.send({ success: true })
 })
 
 router.get('/signout', (req, res, next) => {

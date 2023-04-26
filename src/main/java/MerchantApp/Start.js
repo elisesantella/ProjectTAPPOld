@@ -19,7 +19,7 @@ function Start({ navigation }) {
                     <View style ={styles.content}>
                         <View style ={styles.loginSignUpButton}>
                             <TouchableOpacity
-                                onPress={() => navigation.navigate('Home')}>
+                                onPress={() => navigation.navigate('SignIn')}>
                                 <Text style={styles.text}>Login</Text>
                             </TouchableOpacity>
                         </View>

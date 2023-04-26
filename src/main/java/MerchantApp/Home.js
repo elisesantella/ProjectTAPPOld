@@ -22,7 +22,7 @@ function Home({ navigation }) {
     return () => clearInterval(timer);
   }, []);
 
-  const url = "https://7cf4-109-78-62-166.ngrok-free.app"
+  const url = "https://4b60-109-78-148-98.ngrok-free.app"
 
   useEffect(() => {
     fetch(url)

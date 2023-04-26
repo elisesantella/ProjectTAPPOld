@@ -7,7 +7,7 @@ import styles from './StyleSheets/SignUpStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
 
-function SignUp({ navigation }) {
+function SignIn({ navigation }) {
 
   const [companyName, onChangeCompany] = React.useState(null);
   const [pin, onChangePin] = React.useState('');
@@ -22,7 +22,7 @@ function SignUp({ navigation }) {
 
   const submitData = (companyName, pin)=>{
 
-    fetch("https://4b60-109-78-148-98.ngrok-free.app/signup",{
+    fetch("https://4b60-109-78-148-98.ngrok-free.app/signin",{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
@@ -33,9 +33,9 @@ function SignUp({ navigation }) {
     })
     .then(res=>res.json())
     .then(data=>{
-        Alert.alert(`Company is saved successfully`)
+        Alert.alert(`Company is Logged successfully`)
         console.log(data);
-        navigation.navigate('Start')
+        navigation.navigate('Home')
     })
     .catch(err=>{
       Alert.alert("Something went wrong")
@@ -95,4 +95,4 @@ function SignUp({ navigation }) {
   );
 }
 
-export default SignUp;
+export default SignIn;
