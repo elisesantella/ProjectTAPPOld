@@ -1,16 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef} from 'react';
-import {Alert, ImageBackground, Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Alert, ImageBackground, Image, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback,View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import styles from './StyleSheets/AmountStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
 
 import QRCode from 'react-native-qrcode-svg';
 
 function Amount ({ navigation, route}) {
-  const [number, onSetNumber] = React.useState('');
+  const [price, SetPrice] = React.useState('');
   const [qrvalue, setQrvalue] = useState('');
+
+  const dismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
+
   //let myQRCode = useRef();
 
   // const shareQRCode = () => {
@@ -25,42 +31,26 @@ function Amount ({ navigation, route}) {
   //   });
   // };
 
-  // useEffect(() => {
-  //   // POST request using fetch inside useEffect React hook
-  //   const requestOptions = {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ amount: number, })
-  //   };
-  //   fetch('http://localhost:3000/sms', requestOptions)
-  //       .then(response => response.json())
-  //       .then(data => onChangeNumber(data.number));
+  const submitData = (price)=>{
 
-  // }, []);
-
-  //hello elise
-
-  const submitData = (number)=>{
-    fetch("https://fancy-berries-bow-109-76-217-145.loca.lt/theNumber",{
+    fetch("https://7cf4-109-78-62-166.ngrok-free.app/thePrice",{
         method:"POST",
         headers:{
           'Content-Type': 'application/json'
         },
         body:JSON.stringify({
-          numberVariable: number,
+          price: price,
         })
     })
     .then(res=>res.json())
     .then(data=>{
-        Alert.alert(`${number} is saved successfully`)
+        Alert.alert(`€ ${price} is saved successfully`)
         console.log(data);
-        navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
-        //navigation.navigate('Transaction', {paraKey: number})
+        navigation.navigate('Transaction', {paraKey: price}, {paraKey1: qrvalue})
     })
     .catch(err=>{
-      Alert.alert("something went wrong")
-
-      navigation.navigate('Transaction', {paraKey: number}, {paraKey1: qrvalue})
+      Alert.alert("Something went wrong")
+      navigation.navigate('Transaction', {paraKey: price}, {paraKey1: qrvalue})
   })
   }
 
@@ -69,7 +59,7 @@ function Amount ({ navigation, route}) {
       <Header></Header>
       <View style ={styles.mainBody}>
         <ImageBackground
-            source={require('./backgroundAmount.png')}
+            source={require('./BackgroundImages/backgroundAmount.png')}
             resizeMode= "stretch"
             style={styles.background}>
           <View style ={styles.content}>
@@ -79,16 +69,18 @@ function Amount ({ navigation, route}) {
               </Text>
             </View>
           <View style ={styles.space}>
+            <TouchableWithoutFeedback onPress={dismissKeyboard}>
             <SafeAreaView>
               <TextInput
                   style={styles.input}
-                  onChangeText={onSetNumber}
-                  value={number}
+                  onChangeText={SetPrice}
+                  value={price}
                   placeholder="Enter Amount"
                   placeholderTextColor="lightsteelblue"
-                  keyboardType="default"
+                  keyboardType="numeric"
               />
             </SafeAreaView>
+            </TouchableWithoutFeedback>
             {/* <View>
               Returned number: {number}
             </View> */}
@@ -99,7 +91,7 @@ function Amount ({ navigation, route}) {
               <TouchableOpacity
                   onChange={setQrvalue}
                   value={qrvalue}
-                  onPress={()  => submitData(number)}>
+                  onPress={()  => submitData(price)}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
             </View>
@@ -110,108 +102,5 @@ function Amount ({ navigation, route}) {
     </View>
   )
 }
- 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    flexDirection: "column",
-  },
-  mainBody: {
-    flexDirection: "column",
-    backgroundColor: "powderblue",
-    height: "75%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 5,
-    borderColor: "teal",
-    borderTopWidth: 0,
-  },
-  background: {
-    flexDirection: "column",
-    height: "100%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  content: {
-    //borderWidth: 5,
-    //borderColor: "yellow",
-    height: "80%",
-    width: '80%',
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  amountBox: {
-    backgroundColor: "cadetblue",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "18%",
-    width: '100%',
-    borderWidth: 5,
-    borderColor: "teal",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "midnightblue",
-    //borderWidth: 5,
-    //borderColor: "yellow",
-  },
-  space: {
-    height: "15%",
-    width: '100%',
-    //borderWidth: 5,
-    //borderColor: "red",
-    padding: 15,
-  },
-  input: {
-    height: 50,
-    margin: 12,
-    borderWidth: 5,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    padding: 10,
-    borderColor: "teal",
-    backgroundColor: "white",
-    textAlign: "center",
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "midnightblue",
-  },
-  buttonOk: {
-    backgroundColor: "teal",
-    borderWidth: 5,
-    borderColor: "darkslategrey",
-    height: "15%",
-    width: '40%',
-    justifyContent: "center",
-    alignItems: "center",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-    shadowColor: "midnightblue",
-    shadowOpacity: 0.5,
-    shadowRadius: 15 ,
-    shadowOffset : { width: 7, height: 7},
-  },
-  textOk: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "white",
-    //borderWidth: 5,
-    //borderColor: "yellow",
-  },
-});
   
 export default Amount;

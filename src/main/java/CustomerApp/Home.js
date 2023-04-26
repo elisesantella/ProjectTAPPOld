@@ -1,31 +1,92 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { startTransition } from 'react';
+import React, {useState, useEffect} from 'react';
 import { ImageBackground, Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
   TouchableWithoutFeedback, Button, Image, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import styles from './StyleSheets/HomeStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
 
-function Home({ navigation }){
+function Home({ navigation, route }){
+  
+  const [date, setDate] = useState(new Date());
+  const [item, setItem] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  let theText = null
+  if (route) {
+    if (route.params) {
+      if (route.params.paraKey) {
+        theText = route.params.paraKey
+      }
+    }
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000 * 60 * 60 * 24); // update every 24 hours
+    return () => clearInterval(timer);
+  }, []);
+
+  const url = "https://7cf4-109-78-62-166.ngrok-free.app"
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        //console.log(transactions)
+        setItem(json.transactions.slice(-5));
+        // const totalPrice = json.transactions.reduce((acc, transactions) => acc + transactions.price, 0);
+        // if (theText) {
+        //   const updatedTotalPrice = totalPrice + parseFloat(theText);
+        //   setTotalPrice(updatedTotalPrice);
+        // } else {
+        //   setTotalPrice(totalPrice)
+        // }
+        // //setTotalPrice(totalPrice);
+        console.log(json.transactions)
+      })
+      .catch((error) => console.error(error))
+  }, []);
+
+  const url2 = "https://7cf4-109-78-62-166.ngrok-free.app/theTotal"
+
+  useEffect(() => {
+    fetch(url2)
+      .then((response) => response.json())
+      .then((json) => {
+        //console.log(transactions)
+       setTotalPrice(json.total);
+       if (theText) {
+        const updatedTotalPrice = parseFloat(theText) - totalPrice;
+        setTotalPrice(updatedTotalPrice);
+      } else {
+        setTotalPrice(totalPrice)
+      }
+        console.log(json.total)
+      })
+      .catch((error) => console.error(error))
+  }, []);
+
     return(
       <View style={styles.container}>
         <Header></Header>
         <View style={styles.bodyContainer}>
         <ImageBackground 
-            source={require('./backgroundHome.png')} 
+            source={require('./BackgroundImages/backgroundHome.png')} 
             resizeMode= "stretch" 
             style={styles.background}>
           <View style={styles.contentContainer}>
             <View style={styles.dateContainer}>
               <View style={styles.dateSpace}></View>
               <View style={styles.dateTextContainer}>
-               <Text style={styles.dateText}>Date:</Text>
+               <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
               </View>
             </View>
-  
             <View style ={styles.loginSignUpButton}>
-              <Text style={styles.dateText}>Balance:</Text>
+              <Text style={styles.dateText}>Balance: €{totalPrice} </Text>
             </View>
             <View style={styles.spaceHome}>
               <View style={styles.entrySpace}></View>
@@ -33,7 +94,17 @@ function Home({ navigation }){
             <View style ={styles.loginSignUpButton}>
               <Text style={styles.loginSignUpText}>Recent Transactions:</Text>
             </View>
-            <View style={styles.transactionSpace}></View>
+            <View style={styles.transactionSpace}>
+                {item.length > 0? item.map((transactions) => {
+                      return (
+                        <View>
+                        {/* // <View style={styles.button2}>  */}
+                          <Text style={styles.text5}> {transactions.date} {"\n"} Item ID: {transactions.itemId} €{transactions.price} </Text>
+                          {/* <Text style={styles.text1}>ID: {products.ourId}</Text> */}
+                        </View>
+                      );
+                    }) : null}
+            </View>
             <View style={styles.dateContainer}>
               <View style={styles.paymentButton}>
               <TouchableOpacity
@@ -56,158 +127,5 @@ function Home({ navigation }){
       </View>
     );
   }
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "white",
-      flexDirection: "column",
-    },
-    bodyContainer: {
-    flexDirection: "column",
-    backgroundColor: "powderblue",
-    height: "70%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 5,
-    borderColor: "teal",
-    borderTopWidth: 0,
-    },
-    background: {
-      flexDirection: "column",
-      height: "100%",
-      width: '100%',
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    contentContainer: {
-      justifyContent: "center",
-      alignItems: "center",
-      height: "80%",
-      width: '65%',
-      //borderWidth: 5,
-      //borderColor: "teal",
-    },
-    dateTextContainer: {
-      backgroundColor: "aliceblue",
-      flexDirection: "row",
-      height: "85%",
-      width: '40%',
-      borderWidth: 2,
-      borderColor: "teal",
-      justifyContent: "center",
-      alignItems: "center",
-      borderTopLeftRadius: 15,
-      borderTopRightRadius: 15,
-      borderBottomLeftRadius: 15,
-      borderBottomRightRadius: 15,
-    },
-    dateContainer: {
-      flexDirection: "row",
-      height: "15%",
-      width: '100%',
-      //borderWidth: 5,
-      //borderColor: "black",
-    },
-    loginSignUpButton: {
-      backgroundColor: "cadetblue",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "19%",
-      width: '100%',
-      borderWidth: 5,
-      borderColor: "teal",
-      borderTopLeftRadius: 15,
-      borderTopRightRadius: 15,
-      borderBottomLeftRadius: 15,
-      borderBottomRightRadius: 15,
-    },
-    paymentButton: {
-      backgroundColor: "cadetblue",
-      borderWidth: 5,
-      borderColor: "teal",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      height: "100%",
-      width: '48%',
-      borderTopLeftRadius: 15,
-      borderTopRightRadius: 15,
-      borderBottomLeftRadius: 15,
-      borderBottomRightRadius: 15,
-    },
-    addCoinButton: {
-      backgroundColor: "cadetblue",
-      borderWidth: 5,
-      borderColor: "teal",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      height: "100%",
-      width: '48%',
-    },
-    loginSignUpText: {
-      textAlign: "center",
-      fontSize: 25,
-      fontWeight: "bold",
-      color: "midnightblue",
-    },
-    dateText: {
-      textAlign: "center",
-      fontSize: 25,
-      fontWeight: "bold",
-      color: "midnightblue",
-    },
-    homeText: {
-      textAlign: "center",
-      fontSize: 20,
-      fontWeight: "bold",
-      color: "midnightblue",
-      padding: 10,
-    },
-    dateSpace: {
-      flexDirection: "row",
-      height: "100%",
-      width: '60%',
-      justifyContent: "flex-start",
-      //borderWidth: 5,
-      //borderColor: "blue",
-    },
-    spaceHome: {
-      height: "10%",
-      width: '100%',
-      //borderWidth: 5,
-      //borderColor: "red",
-      padding: 5,
-    },
-    entrySpace: {
-      backgroundColor: "white",
-      height: "15%",
-      width: '100%',
-      borderWidth: 3,
-      borderColor: "teal",
-      padding: 15,
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-      borderBottomLeftRadius: 10,
-      borderBottomRightRadius: 10,
-    },
-    transactionSpace: {
-      backgroundColor: "white",
-      height: "30%",
-      width: '90%',
-      borderWidth: 2,
-      borderColor: "black",
-      margin: 15,
-    },
-    paymentSpace: {
-      flexDirection: "row",
-      height: "100%",
-      width: '5%',
-      justifyContent: "center",
-      //borderWidth: 5,
-      //borderColor: "blue",
-    },
-  });
-  
 
 export default Home;

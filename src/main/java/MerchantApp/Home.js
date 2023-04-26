@@ -1,19 +1,76 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import styles from './StyleSheets/HomeStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
 
 
 function Home({ navigation }) {
+  const [date, setDate] = useState(new Date());
+  const [item, setItem] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0);
+  //const [loading, setLoading] = useState(true);
+  const [balance, setBalance] = useState([]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000 * 60 * 60 * 24); // update every 24 hours
+    return () => clearInterval(timer);
+  }, []);
+
+  const url = "https://7cf4-109-78-62-166.ngrok-free.app"
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        //console.log(transactions)
+        setItem(json.transactions.slice(-5));
+        const totalPrice = json.transactions.reduce((acc, transactions) => acc + transactions.price, 0);
+        setTotalPrice(totalPrice);
+        console.log(totalPrice)
+      })
+      .catch((error) => console.error(error))
+  }, []);
+
+  // const url = "https://64e5-109-76-217-145.ngrok-free.app/theBalance"
+
+  // useEffect(() => {
+  //   fetchBalance();
+  //   // Fetch balance every 5 seconds
+  //   const intervalId = setInterval(fetchBalance, 5000);
+
+  //   return () => clearInterval(intervalId);
+  //   // fetch(url)
+  //   //   .then((sum) => sum.json())
+  //   //   .then((json) => {
+  //   //     setBalance(json.sum);
+  //   //     console.log(json);
+  //   //   })
+  //   //   .catch((error) => console.error(error))
+  // }, []);
+
+  // const fetchBalance = () => {
+  //   fetch('https://64e5-109-76-217-145.ngrok-free.app/theBalance')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setBalance(data.sum);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+
   return(
     <View style={styles.container}>
       <Header></Header>
       <View style ={styles.mainBody}>
         <ImageBackground 
-            source={require('./backgroundHome.png')} 
+            source={require('./BackgroundImages/backgroundHome.png')} 
             resizeMode= "stretch" 
             style={styles.background}>
           <View style ={styles.content}>
@@ -21,18 +78,36 @@ function Home({ navigation }) {
               <View style ={styles.spaceDate}/>
               <View style ={styles.date}>
                 <Text style={styles.text}>
-                  <Text>DATE:</Text>
+                  <Text>{date.toLocaleDateString()}</Text>
                 </Text>
               </View>
             </View>
-            <View style ={styles.space}/>
-            <View style ={styles.recentTransBox}>
-              <Text style={styles.text}>
-                <Text>Recent Transactions:</Text>
+            <View style ={styles.space2}/>
+            <View style ={styles.balanceBox}>
+            <Text style={styles.text}>
+                <Text>Balance: €{totalPrice} </Text>
               </Text>
             </View>
+            <View style={styles.spaceHome}>
+              <View style={styles.balanceSpace}></View>
+            </View>
+            <View style ={styles.recentTransBox}>
+              <Text style={styles.text}> Recent Transactions: </Text>
+                {/* <Text>Recent Transactions: </Text> */}
+             {/* </Text> */}
+            </View>
             <View style ={styles.space}/>
-            <View style ={styles.transactionEntry}/>
+            <View style ={styles.transactionEntry}>
+                {item.length > 0? item.map((transactions) => {
+                      return (
+                        <View>
+                        {/* // <View style={styles.button2}>  */}
+                          <Text style={styles.text5}> {transactions.date} {"\n"} Item ID: {transactions.itemId} €{transactions.price} </Text>
+                          {/* <Text style={styles.text1}>ID: {products.ourId}</Text> */}
+                        </View>
+                      );
+                    }) : null}
+              </View>
             <View style ={styles.space}/>
             <View style ={styles.makeSaleButton}>
               <TouchableOpacity
@@ -48,120 +123,4 @@ function Home({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    flexDirection: "column",
-  },
-  mainBody: {
-    flexDirection: "column",
-    backgroundColor: "powderblue",
-    height: "75%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 5,
-    borderColor: "teal",
-    borderTopWidth: 0,
-  },
-  background: {
-    flexDirection: "column",
-    height: "100%",
-    width: '100%',
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  content: {
-    //borderWidth: 5,
-    //borderColor: "yellow",
-    height: "80%",
-    width: '80%',
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  dateContainer: {
-    flexDirection: "row",
-    height: "10%",
-    width: '100%',
-    //borderWidth: 5,
-    //borderColor: "black",
-  },
-  spaceDate: {
-    flexDirection: "row",
-    height: "100%",
-    width: '60%',
-    justifyContent: "flex-start",
-    //borderWidth: 5,
-    //borderColor: "blue",
-  },
-  date: {
-    backgroundColor: "aliceblue",
-    flexDirection: "row",
-    height: "100%",
-    width: '40%',
-    borderWidth: 2,
-    borderColor: "teal",
-    justifyContent: "center",
-    alignItems: "center",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 25,
-    fontWeight: "bold",
-    color: "midnightblue",
-    //borderWidth: 5,
-    //borderColor: "yellow",
-  },
-  space: {
-    height: "5%",
-    width: '100%',
-    //borderWidth: 5,
-    //borderColor: "red",
-    padding: 5,
-  },
-  recentTransBox: {
-    backgroundColor: "cadetblue",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "15%",
-    width: '100%',
-    borderWidth: 5,
-    borderColor: "teal",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-  },
-  transactionEntry: {
-    backgroundColor: "white",
-    height: "45%",
-    width: '90%',
-    borderWidth: 2,
-    borderColor: "black",
-    padding: 15,
-  },
-  makeSaleButton: {
-    backgroundColor: "cadetblue",
-    borderWidth: 5,
-    borderColor: "teal",
-    height: "15%",
-    width: '50%',
-    justifyContent: "center",
-    alignItems: "center",
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
-    shadowColor: "midnightblue",
-    shadowOpacity: 0.5,
-    shadowRadius: 15 ,
-    shadowOffset : { width: 7, height: 7},
-  },
-});
-  
 export default Home;
