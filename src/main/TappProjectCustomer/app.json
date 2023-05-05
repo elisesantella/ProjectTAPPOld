@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "TappProjectCustomer",
+    "slug": "TappProjectCustomer",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+     
+  }
+}
