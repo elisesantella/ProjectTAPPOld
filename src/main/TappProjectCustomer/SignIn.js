@@ -4,8 +4,9 @@ import {Alert, ImageBackground, Keyboard, SafeAreaView, Text, TextInput, Touchab
 import styles from './StyleSheets/SignUpStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
+import { Ionicons } from '@expo/vector-icons'; //Return Arrow
 
-const URL = `https://84e2-109-78-225-88.ngrok-free.app`
+const URL = `https://723e-51-37-102-201.ngrok-free.app`
 
 let transactionData = "";
 let balanceData = "";
@@ -17,8 +18,9 @@ function SignIn({ navigation }) {
 
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [text, setText] = useState('. . . waiting for fetch API');
+  //const [text, setText] = useState('. . . waiting for fetch API');
 
+  //Function to dismiss keyboard
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
@@ -33,7 +35,7 @@ function SignIn({ navigation }) {
           method: 'POST', 
           headers: {
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+            "ngrok-skip-browser-warning": "69420" 
           },
           body:JSON.stringify({
           username, password
@@ -47,12 +49,12 @@ function SignIn({ navigation }) {
         usernameData = data.username
         id = data._id;
         console.log(data)
-        setText(JSON.stringify(data))
+        //setText(JSON.stringify(data))
         console.log(balanceData)
         console.log(transactionData)
         console.log(usernameData)
         console.log(id)
-        setText(JSON.stringify(data))
+        //setText(JSON.stringify(data))
         navigation.navigate('Home', {id: id, data: data, usernameData: usernameData, 
           transactionData: transactionData, balanceData:balanceData});
         } else {
@@ -73,9 +75,18 @@ function SignIn({ navigation }) {
             source={require('./BackgroundImages/backgroundSignUp.png')} 
             resizeMode= "stretch" 
             style={styles.background}>
-          <View style ={styles.contents2}>
+          <View style ={styles.contents}>
+          <View style ={styles.returnContainer}>
+              <View style={styles.returnButton}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Start')}>
+                  <Ionicons name="return-up-back-sharp" size={50} color="midnightblue" />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style ={styles.smallSpace}/>
             <View style ={styles.loginSignUpButton}>
-              <Text style={styles.text2}>Enter Username</Text>
+              <Text style={styles.blueText}>Enter Username</Text>
             </View>
               <SafeAreaView>
                 <TextInput
@@ -88,7 +99,7 @@ function SignIn({ navigation }) {
                 />
               </SafeAreaView>
             <View style ={styles.loginSignUpButton}>
-            <Text style={styles.text2}>Enter Password</Text>
+            <Text style={styles.blueText}>Enter Password</Text>
             </View>
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
             <SafeAreaView>
@@ -108,6 +119,14 @@ function SignIn({ navigation }) {
               onPress={async ()  => submitData()}>
               <Text style={styles.textConfirm}>Confirm</Text>
               </TouchableOpacity>
+              </View>
+              <View style ={styles.smallSpace}/>
+              <View style ={styles.signUpContainer}> 
+                <Text style={styles.smallText}> Don't have an account? </Text>  
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('SignUp')}>
+                  <Text style={styles.underlineText}> Sign Up </Text>
+                </TouchableOpacity>
               </View>
           </View>
         </ImageBackground>

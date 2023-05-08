@@ -41,7 +41,7 @@ loginSignUpButton: {
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
 },
-text: {
+buttonText: {
     textAlign: "center",
     fontSize: 25,
     fontWeight: "bold",

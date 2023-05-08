@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react'
-import {Alert, ImageBackground, Keyboard, SafeAreaView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
+import {Alert, ImageBackground, Keyboard, Button, SafeAreaView, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View} from 'react-native';
 import styles from './StyleSheets/SignUpStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
+import { Ionicons } from '@expo/vector-icons'; //Return Arrow
 
-const URL = `https://84e2-109-78-225-88.ngrok-free.app`
+const URL = `https://723e-51-37-102-201.ngrok-free.app`
 
 let transactionData = "";
 let balanceData = "";
@@ -16,12 +17,14 @@ function SignIn({ navigation, route }) {
 
   const [companyName, setCompany] = React.useState(null);
   const [pin, setPin] = React.useState('');
-  const [text, setText] = useState('. . . waiting for fetch API');
+  // const [text, setText] = useState('. . . waiting for fetch API');
 
+  //Function to dismiss numeric keyboard
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
+  //Submit Merchant login details to be authorised by server
   const submitData = async () => {
     try {
       const res = await fetch(URL + `/signinM?` + new URLSearchParams({
@@ -48,8 +51,7 @@ function SignIn({ navigation, route }) {
         console.log(balanceData)
         console.log(transactionData)
         console.log(companyNameData)
-        setText(JSON.stringify(data))
-        //MAY NOT HAVE TO SEND THROUGH BALANCE/TRANSACTIONS SEPERATELY - THINK CAN ACCESS IT FROM DATA IN HOME
+        // setText(JSON.stringify(data))
         navigation.navigate('Home', {data: data, companyNameData: companyNameData, transactionData: transactionData, balanceData:balanceData});
         } else {
           console.log(data)
@@ -69,25 +71,34 @@ function SignIn({ navigation, route }) {
             source={require('./BackgroundImages/backgroundSignUp.png')} 
             resizeMode= "stretch" 
             style={styles.background}>
-          <View style ={styles.contents2}>
-            <View style ={styles.loginSignUpButton}>
-              <Text style={styles.text2}>Enter Company Name</Text>
+          <View style ={styles.contents}>
+            <View style ={styles.returnContainer}>
+              <View style={styles.returnButton}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Start')}>
+                  <Ionicons name="return-up-back-sharp" size={50} color="midnightblue" />
+                </TouchableOpacity>
+              </View>
             </View>
-              <SafeAreaView>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setCompany}
-                    value={companyName}
-                    placeholder="Enter Company"
-                    placeholderTextColor="lightsteelblue"
-                    keyboardType="default"
-                />
-              </SafeAreaView>
+            <View style ={styles.smallSpace}/>
             <View style ={styles.loginSignUpButton}>
-            <Text style={styles.text2}>Enter a PIN</Text>
+              <Text style={styles.blueText}>Enter Company Name</Text>
+            </View>
+            <SafeAreaView>
+              <TextInput
+                style={styles.input}
+                onChangeText={setCompany}
+                value={companyName}
+                placeholder="Enter Company"
+                placeholderTextColor="lightsteelblue"
+                keyboardType="default"
+              />
+            </SafeAreaView>
+            <View style ={styles.loginSignUpButton}>
+              <Text style={styles.blueText}>Enter a PIN</Text>
             </View>
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <SafeAreaView>
+              <SafeAreaView>
                 <TextInput
                     style={styles.input}
                     onChangeText={setPin}
@@ -98,13 +109,21 @@ function SignIn({ navigation, route }) {
                     secureTextEntry={true}
                 />
               </SafeAreaView>
-              </TouchableWithoutFeedback>
-              <View style ={styles.buttonConfirm}>
+            </TouchableWithoutFeedback>
+            <View style ={styles.buttonConfirm}>
               <TouchableOpacity
-              onPress={async ()  => submitData()}>
-              <Text style={styles.textConfirm}>Confirm</Text>
+                onPress={async ()  => submitData()}>
+                <Text style={styles.whiteText}>Confirm</Text>
               </TouchableOpacity>
-              </View>
+            </View>
+            <View style ={styles.smallSpace}/>
+            <View style ={styles.signUpContainer}> 
+              <Text style={styles.smallText}> Don't have an account? </Text>  
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SignUp')}>
+                <Text style={styles.underlineText}> Sign Up </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ImageBackground>
       </View>

@@ -1,24 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef} from 'react';
-import {Alert,ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {Alert,ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import styles from './StyleSheets/TransactionStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
 import QRCode from 'react-native-qrcode-svg';
+import { Ionicons } from '@expo/vector-icons'; //return Arrow
 
-const URL = `https://84e2-109-78-225-88.ngrok-free.app`
+const URL = `https://723e-51-37-102-201.ngrok-free.app`
 
+// let transactionData = "";
+// let balanceData = "";
+// let companyName = "";
+let data = "";
 
 function Transaction({ navigation, route }) {
-  const { data, companyNameData, transactionData, balanceData } = route.params;
+  const { companyNameData, balanceData, transactionData } = route.params;
   const price = route.params?.price
   let myQRCode = useRef();
-  const [text, setText] = useState('. . . waiting for fetch API');
+  // const [text, setText] = useState('. . . waiting for fetch API');
   console.log(price)
   console.log(companyNameData)
+  console.log(transactionData)
+  console.log(balanceData)
 
+  //Add new transaction to data containing price 
   const submitData = async () => {
     try {
       const res = await fetch(
@@ -27,18 +32,32 @@ function Transaction({ navigation, route }) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+            "ngrok-skip-browser-warning": "69420" 
           },
           body: JSON.stringify({
             price: price, 
-          }) // Need to use POST to send body
+          }) 
         }
       )
-      const data = await res.json()
-      console.log(data)
-      setText(JSON.stringify(data))
-      if (data.success) {
+     // const data = await res.json()
+      //console.log(data)
+      // setText(JSON.stringify(data))
+      //if (data.success) {
+      if (res.ok) {
+        data = await res.json();
+       // balanceData = data.balance;
+        const transactionData = data.transactions
+        //companyNameData = data.companyName
+        console.log(data)
+        //console.log(balanceData)
+        console.log(transactionData)
+        console.log(companyNameData)
+        //submitData1()
+        //console.log(data)
         const newBalance = Number(balanceData) + Number(price);
+        console.log(newBalance)
+       // const transactionData1 = data.transactions
+        //console.log(transactionData1)
         navigation.navigate('Home', {data: data, companyNameData: companyNameData, 
           transactionData: transactionData, balanceData: newBalance.toString()})
         Alert.alert(`Transaction Successful: ${price}TAPP`)
@@ -47,6 +66,8 @@ function Transaction({ navigation, route }) {
       console.log(err)
     }
   }
+
+  
 
   return(
     <View style={styles.container}>
@@ -59,30 +80,24 @@ function Transaction({ navigation, route }) {
           <View style ={styles.content}>
             <View style ={styles.qrContainer}>
               <QRCode
-                  //QR code value
-                  value={price ? price.toString() : 'NA'}
-                  //size of QR Code
-                  size={250}
-                  //Color of the QR Code 
-                  color="midnightblue"
-                  //Background Color of the QR Code 
-                  backgroundColor="white"
-                  //Center Logo size  
-                  // logoSize={30}
-                  // //Center Logo margin 
-                  // logoMargin={2}
-                  // //Center Logo radius 
-                  // logoBorderRadius={15}
-                  // //Center Logo background 
-                  // logoBackgroundColor="yellow"
-                  getRef={myQRCode}
-                />
-                {/* <QRCodeScanner
-                  onRead={(e) => {
-                    // Extract necessary data from the scanned QR code
-                    const extractedData = e.data;
-                    navigation.navigate('Approved', { extractedData });
-                  }} */}
+                //QR code value
+                value={price ? price.toString() : 'NA'}
+                //size of QR Code
+                size={250}
+                //Color of the QR Code 
+                color="midnightblue"
+                //Background Color of the QR Code 
+                backgroundColor="white"
+                //Center Logo size  
+                // logoSize={30}
+                // //Center Logo margin 
+                // logoMargin={2}
+                // //Center Logo radius 
+                // logoBorderRadius={15}
+                // //Center Logo background 
+                // logoBackgroundColor="yellow"
+                getRef={myQRCode}
+              />
             </View>
             <View style ={styles.space1}/>
             <View style ={styles.amountBox}>
@@ -91,17 +106,21 @@ function Transaction({ navigation, route }) {
               </Text>
             </View>
             <View style ={styles.space2}></View>
-            <View style ={styles.buttonBox}> 
+            <View style ={styles.buttonContainer}>
+              <View style ={styles.buttonBox}> 
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Amount', {data: data, companyNameData: companyNameData, transactionData: transactionData, balanceData: balanceData})}>
+                  <Ionicons name="return-up-back-sharp" size={45} color="midnightblue" />
+                </TouchableOpacity>
+              </View>
+              <View style ={styles.space3}></View>
+              <View style ={styles.buttonBox}> 
                 <TouchableOpacity
                   onPress={async ()  => submitData()}>
                   <Text style={styles.textConfirm}>OK</Text>
                 </TouchableOpacity>
               </View>
-              {/* <View style ={styles.companyEntry}>
-                <Text style={styles.text}>
-                   {route.params.paraKey}
-                </Text>
-              </View> */}
+            </View> 
           </View>
         </ImageBackground>
       </View>

@@ -1,17 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef} from 'react';
 import {Alert, ImageBackground, Image, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback,View} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from './StyleSheets/AmountStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
-import QRCode from 'react-native-qrcode-svg';
+//import QRCode from 'react-native-qrcode-svg';
+import { FontAwesome5 } from '@expo/vector-icons'; //House Vector
 
-const URL = `https://84e2-109-78-225-88.ngrok-free.app`
+const URL = `https://723e-51-37-102-201.ngrok-free.app`
 
 
-let data = "";
+//let data = "";
 
 function Amount ({ navigation, route}) {
   const [price, SetPrice] = React.useState('');
@@ -19,11 +17,14 @@ function Amount ({ navigation, route}) {
   const [text, setText] = useState('. . . waiting for fetch API');
   const {data, companyNameData , transactionData, balanceData } = route.params;
   console.log(companyNameData)
+  console.log(transactionData)
 
+  //Dismiss Numeric Keyboard
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
+  //Sending price to server for testing
   const submitData = async () => {
     try {
       const res = await fetch(
@@ -32,7 +33,7 @@ function Amount ({ navigation, route}) {
           method: 'POST', 
           headers: {
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+            "ngrok-skip-browser-warning": "69420" 
           },
           body:JSON.stringify({
             price: price
@@ -42,7 +43,7 @@ function Amount ({ navigation, route}) {
       const data1 = await res.json();
       console.log(data1)
       setText(JSON.stringify(data1))
-      Alert.alert(`${price} is saved successfully`)
+      //Alert.alert(`${price} is saved successfully`)
       navigation.navigate('Transaction', {price: price, data: data, companyNameData: companyNameData, transactionData: transactionData, balanceData: balanceData})
     } catch (err) {
       console.log(err)
@@ -60,6 +61,15 @@ function Amount ({ navigation, route}) {
             resizeMode= "stretch"
             style={styles.background}>
           <View style ={styles.content}>
+            <View style ={styles.homeContainer}>
+              <View style={styles.returnButton}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Home', {data: data, companyNameData: companyNameData, transactionData: transactionData, balanceData: balanceData})}>
+                  <FontAwesome5 name="home" size={50} color="midnightblue" />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style ={styles.smallSpace}/>
             <View style ={styles.amountBox}>
               <Text style={styles.text}>
                 <Text>Enter Transaction Amount:</Text>
@@ -67,28 +77,22 @@ function Amount ({ navigation, route}) {
             </View>
           <View style ={styles.space}>
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <SafeAreaView>
-              <TextInput
+              <SafeAreaView>
+                <TextInput
                   style={styles.input}
                   onChangeText={SetPrice}
                   value={price}
                   placeholder="Enter Amount"
                   placeholderTextColor="lightsteelblue"
                   keyboardType="numeric"
-              />
-            </SafeAreaView>
+                />
+              </SafeAreaView>
             </TouchableWithoutFeedback>
-            {/* <View>
-              Returned number: {number}
-            </View> */}
           </View>
           <View style ={styles.space}/>
             <View style ={styles.buttonOk}>
-              {/* <Text style={styles.textOk}>OK</Text> */}
               <TouchableOpacity
-                  // onChange={setQrvalue}
-                  // value={qrvalue}
-                  onPress={async ()  => submitData()}>
+                onPress={async ()  => submitData()}>
                 <Text style={styles.textOk}>OK</Text>
               </TouchableOpacity>
             </View>

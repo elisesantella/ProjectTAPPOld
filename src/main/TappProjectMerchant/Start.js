@@ -17,14 +17,14 @@ function Start({ navigation }) {
                         <View style ={styles.loginSignUpButton}>
                             <TouchableOpacity
                                 onPress={() => navigation.navigate('SignIn')}>
-                                <Text style={styles.text}>Login</Text>
+                                <Text style={styles.buttonText}>Login</Text>
                             </TouchableOpacity>
                         </View>
                         <View style ={styles.spaceLoginSignUp}/>
                         <View style ={styles.loginSignUpButton}>
                             <TouchableOpacity
                                 onPress={() => navigation.navigate('SignUp')}>
-                                <Text style={styles.text}>Sign Up</Text>
+                                <Text style={styles.buttonText}>Sign Up</Text>
                             </TouchableOpacity>
                         </View>
                         <View style ={styles.spaceLoginSignUp}/>

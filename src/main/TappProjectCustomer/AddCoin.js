@@ -1,11 +1,12 @@
 import React, { startTransition } from 'react';
 import { useState } from 'react'
-import { Alert, ImageBackground, TouchableOpacity, SafeAreaView, TextInput, Text, View } from 'react-native';
+import { Alert, ImageBackground, Keyboard, TouchableOpacity, SafeAreaView, TextInput, Text, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './StyleSheets/AddCoinStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
+import { FontAwesome5 } from '@expo/vector-icons'; //House Vector
 
-const URL = `https://84e2-109-78-225-88.ngrok-free.app`
+const URL = `https://723e-51-37-102-201.ngrok-free.app`
 
 let transactionData = "";
 let data = "";
@@ -16,6 +17,11 @@ function AddCoin({ navigation, route }){
   const [number, setNumber] = React.useState('');
  // const [balance, setBalance] = React.useState('');
   const [text, setText] = useState('. . . waiting for fetch API');
+
+   //Dismiss Numeric Keyboard
+   const dismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
 
   const submitData = async () => {
     try {
@@ -54,10 +60,20 @@ function AddCoin({ navigation, route }){
             resizeMode= "stretch" 
             style={styles.background}>
           <View style={styles.contentContainer}>
+          <View style ={styles.homeContainer}>
+              <View style={styles.returnButton}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Home', {data: data, usernameData: usernameData, balanceData: balanceData, transactionData: transactionData})}>
+                  <FontAwesome5 name="home" size={50} color="midnightblue" />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style ={styles.smallSpace}/>
             <View style ={styles.amountBox}>
               <Text style={styles.text}>Enter Coin Amount: </Text>
             </View>
             <View style={styles.space}></View>
+            <TouchableWithoutFeedback onPress={dismissKeyboard}>
               <SafeAreaView>
               <TextInput
                   style={styles.input}
@@ -68,6 +84,7 @@ function AddCoin({ navigation, route }){
                   keyboardType="numeric"
               />
               </SafeAreaView>
+              </TouchableWithoutFeedback>
             <View style={styles.space}></View>
             <View style={styles.confirmButton}>
               <TouchableOpacity

@@ -55,7 +55,7 @@ logoSpace: {
 },
 logoImageContainer: {
     height: "70%",
-    width: '100%',
+    width: '120%',
     justifyContent: "flex-end",
 },
     logoImage: {

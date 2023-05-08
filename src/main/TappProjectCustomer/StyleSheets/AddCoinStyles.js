@@ -30,6 +30,22 @@ contentContainer: {
   height: "80%",
   width: '65%',
 },
+homeContainer: {
+  flexDirection: "row",
+  height: "10%",
+  width: '100%',
+},
+returnButton: {
+  flexDirection: "row",
+  height: "100%",
+  width: '30%',
+  justifyContent: "center",
+  alignItems: "center",
+},
+smallSpace: {
+  height: "10%",
+  width: '100%',
+},
 amountBox: {
   backgroundColor: "cadetblue",
   justifyContent: "center",

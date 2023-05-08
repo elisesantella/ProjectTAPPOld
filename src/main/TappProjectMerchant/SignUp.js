@@ -4,23 +4,26 @@ import {Alert, ImageBackground, Keyboard, SafeAreaView, Text, TextInput, Touchab
 import styles from './StyleSheets/SignUpStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
+import { Ionicons } from '@expo/vector-icons'; //Return Arrow
 
-const URL = `https://84e2-109-78-225-88.ngrok-free.app`
+const URL = `https://723e-51-37-102-201.ngrok-free.app`
 
-let transactionData = "";
+//let transactionData = "";
 let data = "";
-let id = "";
+// let id = "";
 
 function SignUp({ navigation }) {
 
   const [companyName, setCompany] = React.useState('');
   const [pin, setPin] = React.useState('');
-  const [text, setText] = useState('. . . waiting for fetch API');
+  // const [text, setText] = useState('. . . waiting for fetch API');
 
+  //Function to dismiss Keyboard
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
+  //Submit Merchant Sign Up data to database
   const submitData = async () => {
     try {
       const res = await fetch(
@@ -29,7 +32,7 @@ function SignUp({ navigation }) {
           method: 'POST', 
           headers: {
             'Content-Type': 'application/json',
-            "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+            "ngrok-skip-browser-warning": "69420" 
           },
           body:JSON.stringify({
           companyName: companyName, pin: pin, transactions: {}
@@ -37,12 +40,12 @@ function SignUp({ navigation }) {
         }
       )
       data = await res.json();
-      transactionData = data.transactions;
+      //transactionData = data.transactions;
       //id = data.id;
       console.log(data)
       //console.log(id) THERE IS NO ID VALUE IN DATBASE IT COMES BACK AS UNDEFINED
-      console.log(transactionData)
-      setText(JSON.stringify(data))
+      //console.log(transactionData)
+      // setText(JSON.stringify(data))
       Alert.alert(`Account is saved successfully`)
       navigation.navigate('Start')
     } catch (err) {
@@ -60,41 +63,50 @@ function SignUp({ navigation }) {
             source={require('./BackgroundImages/backgroundSignUp.png')} 
             resizeMode= "stretch" 
             style={styles.background}>
-          <View style ={styles.contents2}>
-            <View style ={styles.loginSignUpButton}>
-              <Text style={styles.text2}>Enter Company Name</Text>
+          <View style ={styles.contents}>
+            <View style ={styles.returnContainer}>
+              <View style={styles.returnButton}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Start')}>
+                  <Ionicons name="return-up-back-sharp" size={50} color="midnightblue" />
+                </TouchableOpacity>
+              </View>
             </View>
-              <SafeAreaView>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setCompany}
-                    value={companyName}
-                    placeholder="Enter Company"
-                    placeholderTextColor="lightsteelblue"
-                    keyboardType="default"
-                />
-              </SafeAreaView>
+            <View style ={styles.smallSpace}/>
             <View style ={styles.loginSignUpButton}>
-            <Text style={styles.text2}>Enter a PIN</Text>
+              <Text style={styles.blueText}>Enter Company Name</Text>
+            </View>
+            <SafeAreaView>
+              <TextInput
+                  style={styles.input}
+                  onChangeText={setCompany}
+                  value={companyName}
+                  placeholder="Enter Company"
+                  placeholderTextColor="lightsteelblue"
+                  keyboardType="default"
+              />
+            </SafeAreaView>
+            <View style ={styles.loginSignUpButton}>
+              <Text style={styles.blueText}>Enter a PIN</Text>
             </View>
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <SafeAreaView>
+              <SafeAreaView>
                 <TextInput
-                    style={styles.input}
-                    onChangeText={setPin}
-                    value={pin}
-                    placeholder="Enter PIN"
-                    placeholderTextColor="lightsteelblue"
-                    keyboardType="numeric"
-                    secureTextEntry={true}
+                  style={styles.input}
+                  onChangeText={setPin}
+                  value={pin}
+                  placeholder="Enter PIN"
+                  placeholderTextColor="lightsteelblue"
+                  keyboardType="numeric"
+                  secureTextEntry={true}
                 />
               </SafeAreaView>
-              </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
               <View style ={styles.buttonConfirm}>
-              <TouchableOpacity
-              onPress={ async ()  => submitData()}>
-              <Text style={styles.textConfirm}>Confirm</Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={ async ()  => submitData()}>
+                  <Text style={styles.whiteText}>Confirm</Text>
+                </TouchableOpacity>
               </View>
           </View>
         </ImageBackground>

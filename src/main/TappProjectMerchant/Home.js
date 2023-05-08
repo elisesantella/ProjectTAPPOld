@@ -1,8 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import {ImageBackground, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {ImageBackground, Text, TouchableOpacity, View} from 'react-native';
 import styles from './StyleSheets/HomeStyles.js'; // import the stylesheet
 import Header from './Header';
 import Footer from './Footer';
@@ -10,17 +7,9 @@ import Footer from './Footer';
 
 function Home({ navigation, route }) {
   const [date, setDate] = useState(new Date());
-  // const [item, setItem] = useState([])
-  // const [totalPrice, setTotalPrice] = useState(0);
-  //const [loading, setLoading] = useState(true);
-  // const [balance, setBalance] = useState([]);
-  const {data, companyNameData , transactionData, balanceData} = route.params; //PRETTY SURE CAN ACCESS BALANCE & TRANSACTIONS USING DATA.BALANCE/DATA.TRANSACTIONS
-  //const [transactionData, setTransactionData] = useState(route.params.transactionData);
+  const {data, companyNameData , transactionData, balanceData} = route.params; 
 
-  // useEffect(() => {
-  //   setTransactionData(route.params.transactionData);
-  // }, [route.params.transactionData]);
-
+//UseEffect function to generate current data using Date() function
   useEffect(() => {
     const timer = setInterval(() => {
       setDate(new Date());
@@ -28,9 +17,9 @@ function Home({ navigation, route }) {
     return () => clearInterval(timer);
   }, []);
 
-  const url = "https://84e2-109-78-225-88.ngrok-free.app"
+ // const url = "https://723e-51-37-102-201.ngrok-free.app"
 
-  console.log(transactionData)
+  //console.log(transactionData)
 
   return(
     <View style={styles.container}>
@@ -43,56 +32,52 @@ function Home({ navigation, route }) {
           <View style ={styles.content}>
             <View style ={styles.dateContainer}>
               <View style={styles.logoutButton}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Start')}>
-                <Text style={styles.text}>Log Out</Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Start')}>
+                  <Text style={styles.bigText}>Log Out</Text>
                 </TouchableOpacity>
               </View>
               <View style ={styles.spaceDate}/>
               <View style ={styles.date}>
-                <Text style={styles.text}>
+                <Text style={styles.bigText}>
                   <Text>{date.toLocaleDateString()}</Text>
                 </Text>
               </View>
             </View>
-            <View style ={styles.space2}/>
+            <View style ={styles.space}/>
             <View style ={styles.balanceBox}>
-              <Text style={styles.text}>
+              <Text style={styles.bigText}>
                 <Text>Balance:</Text>
               </Text>
             </View>
-            <View style ={styles.space2}/>
-            <View style ={styles.balanceSpace}> 
-             <Text style={styles.text5}>
+            <View style ={styles.space}/>
+            <View style ={styles.balanceDisplay}> 
+             <Text style={styles.balanceText}>
                 <Text>{balanceData} TAPP </Text>
               </Text>
             </View>
-            <View style={styles.spaceHome}>
-              
-            </View>
+            <View style={styles.space}></View>
             <View style ={styles.recentTransBox}>
-              <Text style={styles.text}> Recent Transactions: </Text>
-                {/* <Text>Recent Transactions: </Text> */}
-             {/* </Text> */}
+              <Text style={styles.bigText}> Recent Transactions: </Text>
             </View>
             <View style ={styles.space}/>
-            <View style ={styles.transactionEntry}>
-            {transactionData.length > 0 ? (
-                transactionData.slice(Math.max(transactionData.length - 5, 0)).map((transaction, index) => (
-                  <View key={index}>
-                    <Text style={styles.text6}> {transaction.date} </Text>
-                    <Text style={styles.text6}> {transaction.price} TAPP </Text>
-                  </View>
-              ))
-              ) : ( 
-                <Text> No transactions </Text>
+            <View style ={styles.transactionDisplay}>
+              {transactionData.length > 0 ? (
+                  transactionData.slice(Math.max(transactionData.length - 5, 0)).map((transaction, index) => (
+                    <View key={index}>
+                      <Text style={styles.transactionText}> {transaction.date} </Text>
+                      <Text style={styles.transactionText}> {transaction.price} TAPP </Text>
+                    </View>
+                ))
+                ) : ( 
+                  <Text style={styles.transactionText}> No transactions </Text>
               )}
-              </View>
+            </View>
             <View style ={styles.space}/>
             <View style ={styles.makeSaleButton}>
               <TouchableOpacity
-              onPress={() => navigation.navigate('Amount', {data: data, companyNameData: companyNameData, transactionData: transactionData, balanceData: balanceData})}>
-              <Text style={styles.text}>Make Sale</Text>
+                onPress={() => navigation.navigate('Amount', {data: data, companyNameData: companyNameData, transactionData: transactionData, balanceData: balanceData})}>
+                <Text style={styles.bigText}>Make Sale</Text>
               </TouchableOpacity>
             </View>
           </View>
